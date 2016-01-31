@@ -111,8 +111,8 @@ $prod_name = html_search($rows, $params, $page_num, $prod_count, $prod_in_page, 
 echo '<div class="sp_catalog_list" >';
     if ($params7['show_prod'] == 1) {
         if (count($rows)) {
-            echo '<table border="0" cellspacing="0" cellpadding="0" id="productCartFull" style="border-width:' . $params['list_border_width'] . 'px;border-color:' . $params['list_border_color'] . ';border-style:' . $params['list_border_style'] . ';' . (($params['list_text_color'] != '') ? ('color:' . $params['list_text_color'] . ';') : '') . (($params['list_background_color'] != '') ? ('background-color:' . $params['list_background_color'] . ';') : '') . '">'
-                . '<tr>';
+            echo '<table border="0" cellspacing="0px" cellpadding="0" id="productCartFull" style="border-width:' . $params['list_border_width'] . 'px;border-color:' . $params['list_border_color'] . ';border-style:' . $params['list_border_style'] . ';' . (($params['list_text_color'] != '') ? ('color:' . $params['list_text_color'] . ';') : '') . (($params['list_background_color'] != '') ? ('background-color:' . $params['list_background_color'] . ';') : '') . '">'
+                . '<tr style="display:none;">';
 
             $parameters_exist = 0;
 			echo "<thead>";
@@ -2870,9 +2870,9 @@ function html_front_end_single_product($rows, $reviews_rows, $params, $category_
             '<div id="prodTitle" style="' . (($params['single_title_color'] != '') ? ('color:' . $params['single_title_color'] . ';') : '') . (($params['single_title_background_color'] != '') ? ('background-color:' . $params['single_title_background_color'] . ';') : '') . 'padding:0px;">
               <div class="" width="100%">
                 <div class="">
-                  <div class="sp_td sp_prod_title"  style="float:left;padding:0px 0px 0px 10px !important;line-height:1em; font-size:' . $params['title_size_big'] . 'px;">
+                  <div class="sp_td sp_prod_title"  style="float:left;padding:0px 0px 0px 40px !important;line-height:1em; font-size:' . $params['title_size_big'] . 'px;">
                     <font size="7" style="margin-left: 10px !important;font-size: ' . $params['product_big_title_size'] . 'px;">' . $array[0] . '</font><br/>
-                    <span style="margin-left: 10px !important;line-height: 2;">' . $array2 . ' </span>
+                    <span style="margin-left: 10px !important;line-height: 2;">' . "<a href=../$row->name>"."View Post</a>". ' </span>
                   </div>';
 				  
 				  

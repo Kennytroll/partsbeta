@@ -102,26 +102,92 @@ $subpartsfolder = $filesfolder." Assembly";
  ?>
 
 
+
 		<center style="padding-bottom:11px;"><div class="imagethree">
 <a class="wp-colorbox-image cboxElement" href="<?php bloginfo('url'); ?>/download/<?php echo $company.'/'. get_the_title() . '/' . 'Images' . '/'. get_the_title();?>-pic1.JPG"><img src="<?php bloginfo('url'); ?>/download/<?php echo $company.'/'. get_the_title() . '/' . 'Images' . '/'. get_the_title();?>-pic1.JPG" width="30%" height="76" class="alignnone"></a> <a class="wp-colorbox-image cboxElement" href="<?php bloginfo('url'); ?>/download/<?php echo $company.'/'. get_the_title() . '/' . 'images' . '/'. get_the_title();?>-pic2.JPG"><img src="<?php bloginfo('url'); ?>/download/<?php echo $company.'/'. get_the_title() . '/' . 'images' . '/'. get_the_title();?>-pic2.JPG" width="30%" height="76" class="alignnone"></a> <a class="wp-colorbox-image cboxElement" href="<?php bloginfo('url'); ?>/download/<?php echo $company.'/'. get_the_title() . '/' . 'images' . '/'. get_the_title();?>-pic3.JPG"><img src="<?php bloginfo('url'); ?>/download/<?php echo $company.'/'. get_the_title() . '/' . 'images' . '/'. get_the_title();?>-pic3.JPG" width="30%" height="76" class="alignnone"></a></div></center>
 		<br /><center>
 		<?php 
 
-		
+/*	$namecheck = $sitehome.$littlezerg.$company2.$slash.$party.$slash."1A";
+	echo "<br />" . $namecheck . "<br />";
+    echo $revsauce; */
+/*
+ $testyyy =  esc_url( home_url( '/' ) . 'download/' . $company.'/'. get_the_title() . '/' . "1A" ;*/
+
+/* echo $testyyy;*/
+
+    $namecheck2 =  "C:\\xampp\htdocs\wordpress2\wp-content\uploads\\filebase\KINETROL\\077-100" ;
+   /* echo $namecheck2;*/
+
+   //add in if logic that changes path c:\\ whatever if on local testy vs kusa path
 
 
 
+$baser1= wp_upload_dir();
+$bassss = $baser1['basedir'] . "/Filebase/";
 
-           // get from parent category  // do short code using 
-                                    // location for generate table to get url to pull from
 
-		// get full url,  parse first x digits to get company name?///
+/*   	echo $baser . "<br />";*/
+   	$baser2 = $bassss . "/" . $company . "/" . $party . "/" . "1A" ;
 
-              // full url then ../.// back syntax / get string lenght  / from full vs cut version to know legnth of company name directory
+   	/*echo $baser2;*/
+ 
+  
+/*echo $baser2;*/
 
-		echo do_shortcode("[wpfilebase tag=list path='$company/$party/$filesfolder/' tpl=main_dls pagenav=1 /]"); ?>
-	<div class="linkinpark"> <?php echo do_shortcode("[wp_colorbox_media url='#catefish' type='inline' hyperlink='Subassembly files']");?></div> 
-	<div class="linkinpark"> <?php echo do_shortcode("[wp_colorbox_media url='#dogfish' type='inline' hyperlink='3D Part View']");?> </div>
+$filename = $baser2;
+$catzilla = get_the_category();
+
+
+if (file_exists($filename)) {
+   /* echo "The file $filename exists";*/
+       echo do_shortcode("[wpfilebase tag=list path='$company/$party/$filesfolder/' tpl=main_dls pagenav=1 /]");
+    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#catefish' type='inline' hyperlink='Subassembly files']"); echo '</div>';
+    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#dogfish' type='inline' hyperlink='3D Part View']"); echo '</div>';
+}
+ elseif ($catzilla[0] ->name == "Utility") {
+ 	//handlers and post formish var creator for create post and text file, category of post = utility
+ 	echo do_shortcode("[capture-form-to-post]");
+	
+if (isset($_POST["post_title"])) {
+    $partnumber = $_POST["post_title"];    
+}else{  
+   $partnumber = "" ;
+}
+
+if (isset($_POST["textdata"])) {
+ $texty =  $_POST["textdata"];
+} else {
+  $texty = "";
+}
+  
+
+
+$partnumber2 = $partnumber . ".txt";
+
+$uploaddir = wp_upload_dir();
+$uploaddir2 = $uploaddir['basedir'] . "/Filebase/CustomerAssemblies/";
+
+$combodir =  $uploaddir2 . $partnumber2;
+
+
+if ($partnumber != "") {
+file_put_contents($combodir, $texty);
+echo $combodir . " File Created <br />";
+echo $partnumber . " Post Created <br />";
+
+echo $uploaddir2;
+echo "Press Refresh Database button on left to update changes";
+}
+ 	print_r(get_the_content());
+ }
+
+ else {
+    echo "No drawings uploaded to  $party folder on filebase yet!";
+    echo $catzilla[0] ->name;
+}
+
+?>
 
 
 

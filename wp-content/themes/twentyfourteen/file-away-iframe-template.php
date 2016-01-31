@@ -12,18 +12,52 @@
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 
 			
-<div id="buttbar" class="buttbar" style="color:#333"><center><ul class="navlinky" id="navlinky">
+<div id="buttbar" class="buttbar" style="color:#3F3"><center><ul class="navlinky" id="navlinky">
 	<li> <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">Home</a></li><li class="seppy" id="seppy"> </li>
-	<li><a href="parts-list/">Parts List</a> </li> <li class="seppy" id="seppy"> </li>
-		<li><a href="catalog/">Catalog</a> </li> <li class="seppy" id="seppy"> </li>
-	<li><?php echo do_shortcode("[wp_colorbox_media url='#cont' type='inline' hyperlink='Request Drawing']");?> </li></ul> </center> </div>
+	<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>parts-list/">Parts List</a> </li> <li class="seppy" id="seppy"> </li>
+		<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>catalog/">Catalog</a> </li> <li class="seppy" id="seppy"> </li>
+	<li><?php echo do_shortcode("[wp_colorbox_media url='#cont' type='inline' hyperlink='Request Drawing']");?> </li><li class="seppy" id="seppy"> </li>
+	<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>test-post-generator/">Add New Part</a></li>
+
+		
+	test-post-generator
+</ul> </center> </div>
 			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
 				<button class="menu-toggle"><?php _e( 'Primary Menu', 'twentyfourteen' ); ?></button>
 				<a class="screen-reader-text skip-link" href="#content"><?php _e( 'Skip to content', 'twentyfourteen' ); ?></a>
 				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu', 'menu_id' => 'primary-menu' ) ); ?>
 			</nav>
 		</div></div>
-		
+		<div style="display: none;">
+<div id="cont" style="padding: 15px; background: #FFF;">
+<FORM Action="<?php echo esc_url( home_url( '/' ) ); ?>mailer.php" METHOD="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+	<div class="imagethree"><center><strong>Drawing Request</strong></center><hr>
+	
+	Requested by (email address): <INPUT id="email" name="email" value="" style="background-color:#FFEDC5;"><br />
+	Part Requested: <INPUT id="drawing" name="drawing" value="" style="background-color:#FFEDC5;margin-top:10px;">
+	<Br><Br>Comments:&#xa0;
+	<TEXTAREA id="comments" name="comments" value="" style="padding-bottom:220px;background-color:#FFEDC5;" >
+	</TEXTAREA>
+	<BR>
+	<INPUT type="submit" value="Drawing Request (Email)"> 
+</FORM> </div></div>
+
+<div id="adder" style="padding: 15px; background: #FFF;">
+	<?php echo do_shortcode("[capture-form-to-post]"); ?>
+<FORM Action="<?php echo esc_url( home_url( '/' ) ); ?>genny.php" METHOD="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+	<div class="imagethree"><center><strong>Part Page Generator</strong></center><hr>
+	
+	Part Number (Do not include Rev): <INPUT id="post_title" name="post_title" value="" style="background-color:#FFEDC5;"><br />
+	Company name (Leave blank for Kinetrol): <INPUT id="compname" name="compname" value="" style="background-color:#FFEDC5;margin-top:10px;">
+	<Br><Br>Comments:&#xa0;
+	<TEXTAREA id="post_content" name="post_content" value="" style="padding-bottom:220px;background-color:#FFEDC5;" >
+	</TEXTAREA>
+	<BR>
+	<INPUT type="submit" value="Add Page"> 
+</FORM> </div>
+</div>
+
+
 		</header><!-- #masthead -->
 	<div id="main" class="site-main">
 

@@ -1366,6 +1366,15 @@ padding-left: 6px;
 	display: inline;
 }
 
+#back_to_spidercatalog_button{
+	background-color:rgba(0,0,0,0.3);
+	width:300px;
+	border-radius:4px;
+	padding:6px;
+	font-weight:900;
+	color:#FFF;
+}
+
 .site-content .entry-meta {
 	/*background-color: #fff;*/
 	margin-bottom: 8px;
