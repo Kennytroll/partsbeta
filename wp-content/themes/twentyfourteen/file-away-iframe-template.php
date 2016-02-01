@@ -17,7 +17,7 @@
 	<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>parts-list/">Parts List</a> </li> <li class="seppy" id="seppy"> </li>
 		<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>catalog/">Catalog</a> </li> <li class="seppy" id="seppy"> </li>
 	<li><?php echo do_shortcode("[wp_colorbox_media url='#cont' type='inline' hyperlink='Request Drawing']");?> </li><li class="seppy" id="seppy"> </li>
-	<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>test-post-generator/">Add New Part</a></li>
+	<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>addnew/">Add New Part</a></li>
 
 		
 	test-post-generator

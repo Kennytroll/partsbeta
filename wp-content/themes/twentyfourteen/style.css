@@ -1288,9 +1288,9 @@ font-weight: 400;
 line-height: 0.5;
 margin: 0px 0px 0px;
 padding-bottom:10px;
-  padding-top: 7px;
+  padding-top: 17px;
 text-transform: uppercase;
-padding-left: 6px;
+padding-left: 16px;
 }
 
 .entry-title a {
@@ -1322,7 +1322,8 @@ padding-left: 6px;
 	font-weight: 400;
 	line-height: 1.3333333333;
 	text-transform: uppercase;
-	padding-bottom:14px;
+	padding-bottom:10px;
+	padding-top:14px;
 }
 
 
@@ -1364,15 +1365,6 @@ padding-left: 6px;
 .single .byline,
 .group-blog .byline {
 	display: inline;
-}
-
-#back_to_spidercatalog_button{
-	background-color:rgba(0,0,0,0.3);
-	width:300px;
-	border-radius:4px;
-	padding:6px;
-	font-weight:900;
-	color:#FFF;
 }
 
 .site-content .entry-meta {
@@ -3561,8 +3553,12 @@ box-shadow: 1px 3px 5px #C0980D;
 		margin-bottom:-23px;
 		margin-right:20px;
 		margin-top:-58px;
-		box-shadow: 1px 0px 1px #FFC600;
+		box-shadow: 1px 0px 1px #FFC600, 12px 1px 5px 1px rgba(45, 206, 166, 0.56) inset;
 		border-top-right-radius: 10px;
+		height: 69px;
+		opacity: 0.4;
+		webkit-opacity:0.4;
+		position: absolute;
 
 
 	}
