@@ -17,10 +17,10 @@
 	<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>parts-list/">Parts List</a> </li> <li class="seppy" id="seppy"> </li>
 		<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>catalog/">Catalog</a> </li> <li class="seppy" id="seppy"> </li>
 	<li><?php echo do_shortcode("[wp_colorbox_media url='#cont' type='inline' hyperlink='Request Drawing']");?> </li><li class="seppy" id="seppy"> </li>
-	<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>addnew/">Add New Part</a></li>
+	<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>addnew/">Add New</a></li><li class="seppy" id="seppy"> </li><li><a href="http://drawings/admin/">Admin</a></li>
 
 		
-	test-post-generator
+	
 </ul> </center> </div>
 			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
 				<button class="menu-toggle"><?php _e( 'Primary Menu', 'twentyfourteen' ); ?></button>
@@ -83,8 +83,7 @@ jQuery(document).ready(function($){
 <?php while(have_posts()): the_post(); ?>
 	<div style="background-color:#333;clear:both; float:right; width:140px; margin-right:60px;padding:5px;display:none;">testi<br /><?php echo do_shortcode("[wp_colorbox_media url='#charted' type='inline' hyperlink='Edit Table']");?></div>
 <div id="page-content"><?php the_content(); endwhile; ?></div>
-<div style="display:none;">
-	<div id="charted" style="width:100%;"><iframe src="http://k208-jr-web3/wordpress/wp-admin/admin.php?page=wpdatatables-editor&table_id=2" style="width:100%;height:94%;"></iframe> </div></div>
+
 <?php wp_footer(); ?>
 </body>
 </html>

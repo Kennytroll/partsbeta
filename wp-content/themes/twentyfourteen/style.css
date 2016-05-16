@@ -859,7 +859,7 @@ span + .edit-link:before,
 
 .site {
 	background-color: #fff;
-	max-width: 1260px;
+	/*max-width: 1260px;*/
 	position: relative;
 }
 
@@ -888,7 +888,7 @@ span + .edit-link:before,
 
 .site-header {
 	background-color: #000;
-	max-width: 1260px;
+	/*max-width: 1260px;*/
 	position: relative;
 	width: 100%;
 	z-index: 4;
@@ -1028,20 +1028,20 @@ span + .edit-link:before,
 
 .buttbar {
 	background-color: #333;
-	clear:none;
-	padding:2px;
-	margin-left:420px;
+	clear: none;
+	padding: 2px;
+	margin-left: 420px;
 	line-height: 36px;
-	margin-top:10px;
+	margin-top: 10px;
 	padding-top: -15px;
-	border-radius: 46px 0px 0px 6px; 
+	border-radius: 46px 46px 6px 6px;
 	border-width: 2px solid #FFF;
-	background: rgba(250, 102, 237, 0.69) url("images/abody.png") repeat-y scroll center center;
-	border: 8px solid rgba(255,255,255,0.69);
+	background: rgba(250, 102, 237, 0.69) url("images/abody.png") repeat-x center center;
+	border: 5px solid rgba(255, 255, 255, 0.45);
 	opacity: 0.9;
-	box-shadow: 1px 0px 5px 1px #FFA800,0px 0px 2px 1px #333,inset 2px 1px 3px 2px rgba(0,0,0,0.25),inset 0px 1px 2px 2px rgba(0,0,0,0.45);
-    filter: alpha(opacity=90); /* For IE8 and earlier */
-
+	box-shadow: 1px 0px 5px 1px RGBA(255, 168, 0, 0.41),0px 0px 2px 1px RGBA(179, 74, 74, 0.26),inset 2px 1px 3px 2px rgba(255, 255, 255, 0.3),inset 0px 1px 2px 2px rgba(0,0,0,0.45);
+	filter: alpha(opacity=90);
+	font-size: 14px;
 
 	/*
 	url("images/abody.png") repeat-y scroll center center;
@@ -1078,14 +1078,28 @@ span + .edit-link:before,
 
 }
 
+.sideshifty {
+	float:right;
+	padding-left:325px;
+}
+
+.buttface {
+	padding:15px;
+	background: linear-gradient(91deg, #FFF, #3f3f3f);
+}
+.previewout {
+	width:240px;
+	background: rgba(255,255,255,0.4);
+}
+
 .buttbar ul li {
  display: inline;
  color: #000;
  clear: none;
  list-style: none;
- padding: 0px 20px;
+ padding: 0px 10px;
  text-shadow: 1px 0px 2px #FFF,1px 1px 3px #FFEF83,0px 1px 1px #000;
-
+ white-space: nowrap;
 }
 
 .buttbar ul li.seppy {
@@ -1277,10 +1291,26 @@ a.post-thumbnail:hover {
 margin-bottom: 20px;
 }
 
+.imagethree input{
+	width:95%;
+	background-color: rgba(221, 219, 94, 0.28);
+	margin:3px;
+
+}
+
+.imagethree input[type="submit"]{
+color: #000;
+border: 1px solid rgba(0,0,0,0.2);
+border-radius: 7px;
+margin-top: 8px;
+}
+
 .linkinpark a {
 	text-transform: uppercase;
 	font-weight: 500;
 }
+
+
 
 .entry-title {
 	font-size: 30px;
@@ -1334,7 +1364,7 @@ padding-left: 16px;
 
 }
 .entry-meta .entry-date, .entry-meta .by-author, .entry-meta .tag-links, .entry-meta .sep, .entry-meta .comments-link, .entry-meta .post-edit-link, .entry-meta .author_vcard {
-    display: none;
+   /* display: none;*/
 }
 
 .entry-meta a:hover {
@@ -2054,6 +2084,10 @@ padding-left: 16px;
 	content: "\f443";
 }
 
+
+div.overfidge {
+	overflow: hidden;
+}
 
 /**
  * 6.11 404 Page
@@ -3025,7 +3059,7 @@ box-shadow: 1px 3px 5px #C0980D;
 
 .site-footer {
 	background-color: #000;
-	font-size: 12px;
+	font-size: 0px;
 	position: relative;
 	z-index: 3;
 }
@@ -3548,7 +3582,7 @@ box-shadow: 1px 3px 5px #C0980D;
 		border: 8px solid #FFF;
 		border-radius:160px;
 		background: transparent url("images/abody.png") repeat-y scroll center center;
-		width: 100%;
+		width: 97%;
 		padding-bottom:-20px;
 		margin-bottom:-23px;
 		margin-right:20px;
@@ -3943,7 +3977,7 @@ box-shadow: 1px 3px 5px #C0980D;
 	}
 }
 
-@media screen and (min-width: 1008px) {
+@media screen and (min-width: 920px) {
 	.search-box-wrapper {
 		padding-left: 182px;
 	}
