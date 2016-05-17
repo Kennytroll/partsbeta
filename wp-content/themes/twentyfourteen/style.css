@@ -84,12 +84,11 @@ section {
 }
 
 
-
 audio,
 canvas,
 video {
 	display: inline-block;
-	max-width: 100%;
+	max-width: 98%;
 }
 
 
@@ -145,7 +144,8 @@ body {
 #lightbox p {
     text-align:right; 
     color:#fff; 
-    margin-right:20px; 
+    margin-right:20px;
+
     font-size:12px; 
 }
 
