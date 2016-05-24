@@ -25,7 +25,7 @@
     #cboxTopLeft{width:14px; height:14px; background:url(images/controls.png) no-repeat 0 0;}
     #cboxTopCenter{height:14px; background:url(images/border.png) repeat-x top left;}
     #cboxTopRight{width:14px; height:14px; background:url(images/controls.png) no-repeat -36px 0;}
-    #cboxBottomLeft{width:14px; height:38px; background:url(images/abody.png) no-repeat 0 -32px;box-shadow: 0px -2px 5px #000;border-radius: 0px 0px 0px 10px;}
+    #cboxBottomLeft{width:14px; background:url(images/abody.png) no-repeat 0 -32px;box-shadow: 0px -2px 5px #000;border-radius: 0px 0px 0px 10px;}
     #cboxBottomCenter{height: 43px;
         background: url(images/abody.png) repeat-x bottom center;
         box-shadow: inset -0px 2px 3px 8px rgba(255,255,255,0.5);
@@ -40,7 +40,7 @@
         #cboxError{padding:50px; border:1px solid #ccc;}
         #cboxLoadedContent{margin-bottom:5px;}
         #cboxLoadingOverlay{background:url(images/loading_background.png) no-repeat center center;}
-        #cboxLoadingGraphic{background:url(images/loading.gif) no-repeat center center;}
+        #cboxLoadingGraphic{background:url(images/loading.gif) no-repeat center center;box-shadow: 0px -1px 1px 1px rgba(255,0,0,0.4),inset 0px 0px 3px 2px rgba(255,225,0,0.4),0px 2px 7px rgba(0,0,0,0.4);}
         #cboxTitle{position:absolute; bottom:-25px; left:0; text-align:center; width:100%; font-weight:bold; color:#7C7C7C;}
         #cboxCurrent{position:absolute; bottom:-25px; left:58px; font-weight:bold; color:#7C7C7C;}
 
