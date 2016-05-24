@@ -467,10 +467,17 @@ td {
 
 table {
 	border-collapse: separate;
+	width:100%;
 	border-spacing: 0;
-	border-width: 1px 0 0 1px;
-	margin-bottom: 24px;
-	width: 100%;
+	font-weight: 800;
+	padding: 6px;
+	/*text-transform: uppercase;*/
+	box-shadow: inset 1px -2px 4px 5px rgba(230, 220, 192, 0.1);
+	border-radius: 6px 6px 0px 0px;
+	color: rgba(0, 0, 0, 0.85);
+	font-size: 12px;
+	/*background: transparent url("images/abody.png") repeat-y scroll center center;*/
+	opacity: 0.85;
 }
 
 caption,
@@ -1260,40 +1267,43 @@ a.post-thumbnail:hover {
 }
 
 .imagethree{
-
-	border: 0px solid #333;
-	border-radius:4px;
-	box-shadow:1px 1px 2px #333;
-	padding:6px;
-	margin:12px;
+	border: 2px double #FFF;
+	border-radius: 4px;
+	box-shadow: 1px 1px 2px RGBA(51, 51, 51, 0.31),inset 0px -3px 5px rgba(255,255,255,0.5);
+	padding: 6px;
+	margin: 12px;
+	background: transparent url("images/abody.png") repeat-y scroll center center;
 }
 
 
 .imagethree img{
-	border: 2px solid #FFBA00;
+	border: 2px solid RGBA(255, 186, 0, 0.43);
 	border-radius: 3px;
-	padding:1px;
+	padding: 1px;
 }
 
 
 
 .linkinpark{
-	border: 0px solid #333;
-	border-radius:4px;
+	border-radius: 7px;
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
-	box-shadow:1px 2px 3px #333,inset 1px -1px 4px 1px #000;
-	padding:6px;
+	box-shadow: 1px 2px 3px RGBA(51, 51, 51, 0.27),inset 1px -1px 4px 1px RGBA(0, 0, 0, 0.35);
+	padding: 6px;
 	margin: 0px auto;
-
-	margin-top:-24px;
-	width:150px;
+	margin-top: -24px;
+	width: 150px;
 	background: transparent url("images/abody.png") repeat-y scroll center center;
-	border:3px solid #FFF;
-	float:left;
-	margin-left:30px;
+	border: 2px solid #FFF;
+	float: left;
+	margin-left: 30px;
+	margin-bottom: 20px;
+	border-top: 2px solid #EAE9E9;
+	opacity: 0.69;
+}
 
-margin-bottom: 20px;
+.linkinpark:hover {
+	opacity: 0.90;
 }
 
 .imagethree input{
@@ -1536,9 +1546,15 @@ padding-left: 16px;
 
 .entry-content th,
 .comment-content th {
-	font-weight: 700;
-	padding: 8px;
+	font-weight: 800;
+	padding: 6px;
 	text-transform: uppercase;
+	box-shadow: inset 1px -2px 4px 5px rgba(230, 220, 192, 0.1);
+	border-radius: 6px 6px 0px 0px;
+	color: rgba(0, 0, 0, 0.85);
+	font-size: 12px;
+	background: transparent url("images/abody.png") repeat-y scroll center center;
+	opacity: 0.85;
 }
 
 .entry-content td,
@@ -3586,7 +3602,7 @@ box-shadow: 1px 3px 5px #C0980D;
 		background-color:#FFF;
 		border: 8px solid #FFF;
 		border-radius:160px;
-		background: transparent url("images/abody.png") repeat-y scroll center center;
+		background: transparent url("images/abody.png") repeat-x scroll center center;
 		width: 97%;
 		padding-bottom:-20px;
 		margin-bottom:-23px;
