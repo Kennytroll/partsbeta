@@ -51,7 +51,9 @@
 		<?php the_excerpt(); ?>
 	</div><!-- .entry-summary -->
 	<?php else : ?>
-	<div class="entry-content"><?php
+	<div class="entry-content">
+<script type="text/javascript" src="<?php echo get_template_directory_uri () ?>/js/clone-form-td.js"></script> 
+		<?php
 		$zergzerg = "/download/CustomerAssemblies/";
 		$littlezerg= "/download/";
         $party =  get_the_title(); /* add code to pull rev to plug into spot where 1a is currently */

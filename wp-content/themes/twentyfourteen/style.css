@@ -1269,7 +1269,7 @@ a.post-thumbnail:hover {
 .imagethree{
 	border: 2px double #FFF;
 	border-radius: 4px;
-	box-shadow: 1px 1px 2px RGBA(51, 51, 51, 0.31),inset 0px -3px 5px rgba(255,255,255,0.5);
+	box-shadow: 1px 1px 2px RGBA(51, 51, 51, 0.31),inset 0px -3px 5px rgba(255,255,255,0.5),inset 0px 0px 30px 40px rgba(255,255,255,0.2);
 	padding: 6px;
 	margin: 12px;
 	background: transparent url("images/abody.png") repeat-y scroll center center;
@@ -1307,10 +1307,10 @@ a.post-thumbnail:hover {
 }
 
 .imagethree input{
-	width:95%;
-	background-color: rgba(221, 219, 94, 0.28);
-	margin:3px;
-
+	background-color: rgba(243, 155, 106, 0.3);
+	margin: 3px;
+	font-weight: 700;
+	box-shadow: inset 1px -2px 5px rgba(255,255,255,0.4);
 }
 
 .imagethree input[type="submit"]{
