@@ -282,8 +282,8 @@ if (isset($_POST["post_title"])) {
    $partnumber = "" ;
 }
 
-if (isset($_POST["textdata"])) {
- $texty =  $_POST["textdata"];
+if (isset($_POST["post_category_name"])) {
+ $texty =  $_POST["post_category_name"];
 } else {
   $texty = "";
 }
@@ -300,11 +300,13 @@ $homefry = esc_url( home_url( '/' ) );
 
 if (isset($_POST['submit1'])) {
 file_put_contents($combodir, $texty);
+echo '<div id="infopane">';
 echo "Created ". $combodir . "<br />" ;
 echo " Created Post: <a href='". $homefry . $partnumber . "' target='_blank'>" . $partnumber . "</a><br />";
 
 
 echo "Press Refresh Database button on left to update changes";
+echo '</div>';
 }
  	/*print_r(get_the_content());*/
  }

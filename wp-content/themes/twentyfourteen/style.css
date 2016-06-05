@@ -1305,6 +1305,10 @@ a.post-thumbnail:hover {
 .linkinpark:hover {
 	opacity: 0.90;
 }
+#infopane {
+	position:relative;
+	top:-30px;
+}
 
 .imagethree input{
 	background-color: rgba(243, 155, 106, 0.3);
