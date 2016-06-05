@@ -51,62 +51,55 @@
 		<?php the_excerpt(); ?>
 	</div><!-- .entry-summary -->
 	<?php else : ?>
-	<div class="entry-content"><?php
-		$zergzerg = "/download/CustomerAssemblies/";
+	<div class="entry-content">
+<script type="text/javascript" src="<?php echo get_template_directory_uri () ?>/js/clone-form-td.js"></script> 
+		<?php
+
+/*		initial site location settings for filebase and post display*/
+		$partPostCurrently =  get_the_title();
+	//customer assembly file finding to determine custom company name if given
+		$CustAssmLoc = "/download/CustomerAssemblies/";
 		$littlezerg= "/download/";
-        $party =  get_the_title(); /* add code to pull rev to plug into spot where 1a is currently */
+               
        
-        //get file contents of download/$party/ 
+		// determine if on local test ish or kusa production, set root urlish 
+		/*$sitehome = "http://kusa-bu/";*/
+		$sitehome = site_url();
+	/*	$sitehome2 = site_url();
+		echo $sitehome2;*/
+		if ($sitehome === "http://localhost/wordpress2") {$sitehome = "http://localhost/";};
+		if ($sitehome === "http://kusa-bu/wordpress") {$sitehome = "http://drawings/";};
 
 
+		$CurrentPostAssmTextFile = $sitehome.$CustAssmLoc.$partPostCurrently.".txt";  //find custasm file
+		echo $CurrentPostAssmTextFile. "<br />";
+ 		$CustAssmData= file_get_contents($CurrentPostAssmTextFile);  // assign contents of file, if any, to variable
+		/*echo $CustAssmData;*/
 
-        //if statement that checks if 2a then replaces variable number if so 	
 
+		if (strlen($CustAssmData) >= 4 ) {$company = $CustAssmData;}  // if data in text file use that for company name
+		else {$company = "Kinetrol";}   // else use Kinetrol for company name as fallback
+
+		/*echo $company;*/
+
+		
+	//rev text locator, assign newest active rev of current post to variable for getting correct filebase files etc
+		$revsauce="";
+		$revTextLoc="";
+		$company2= urlencode($company);
+		$revTextLoc= "{$sitehome}/download/{$company2}/{$partPostCurrently}/{$partPostCurrently}-rev.txt";
+		$revsauce= file_get_contents($revTextLoc,NULL,NULL,-4,64);
+		/*echo $revTextLoc;
+		echo $revsauce;*/
 
 		$filesfolder = "1A";
 
-
-
-		$sitehome = "http://kusa-bu/";
-		/*$sitehome = site_url();*/
-		
-$bundaloo2 = $sitehome.$zergzerg.$party.".txt";
-		//echo $bundaloo2. "<br />";
-    $company = "Kinetrol";
-    $applesauce="";
- $revsauce="";
-
-$applesauce= file_get_contents($bundaloo2);  
-
-
-
-//get len , then len -3 for rev 
-// echo file_get_contents($bundaloo2,NULL,NULL,-4,64); echo "fudge";
-
-if (strlen($applesauce)==15) {$company = $applesauce;}
-else {$company = "Kinetrol";}
-
-//echo "uhhh ".$company;
-
-$slash="";
-$slash="/";
-
-
-$bigrichard="";
-$company2= urlencode($company);
-$bigrichard= $sitehome.$littlezerg.$company2.$slash.$party.$slash.$party."-rev.txt";
-$revsauce= file_get_contents($bigrichard,NULL,NULL,-4,64);
-//echo $bigrichard;
-//echo $revsauce;
-
-$filesfolder = "1A";
-
-if (strlen($revsauce)== 2){$filesfolder=$revsauce; } 
-	 else {$filesfolder="1A";}
-//echo $filesfolder;
-	 /*echo $revsauce;
-	 echo $bigrichard;*/
-$subpartsfolder = $filesfolder." Assembly";
+		if (strlen($revsauce)== 2){$filesfolder=$revsauce; }  // assign rev text content to revsauce variable, if n/a use 1A
+			 else {$filesfolder="1A";}
+		//echo $filesfolder;
+			 echo $revsauce;
+			 echo $revTextLoc;
+		$subpartsfolder = $filesfolder." Assembly";
 
 
 //create name handler variable / if rev doc exists use conac that value to end of name / then just use var-pic1.jpg in each slot to show
@@ -212,7 +205,7 @@ else if ( !file_exists($oneimage) && !file_exists($oneimagefallback) ) {
 
 		<?php 
 
-/*	$namecheck = $sitehome.$littlezerg.$company2.$slash.$party.$slash."1A";
+/*	$namecheck = $sitehome.$littlezerg.$company2.$slash.$partPostCurrently.$slash."1A";
 	echo "<br />" . $namecheck . "<br />";
     echo $revsauce; */
 /*
@@ -232,10 +225,10 @@ $bassss = $baser1['basedir'] . "/Filebase/";
 
 
 /*   	echo $baser . "<br />";*/
-   	$baser2 = $bassss . "/" . $company . "/" . $party . "/" . "1A" ;
+   	$baser2 = $bassss . "/" . $company . "/" . $partPostCurrently . "/" . "1A" ;
 
    	/*echo $baser2;*/
-    $baserimg = $bassss . "/" . $company . "/" . $party . "/" . "Images/" . $party . "-pic1.jpg";
+    $baserimg = $bassss . "/" . $company . "/" . $partPostCurrently . "/" . "Images/" . $partPostCurrently . "-pic1.jpg";
   
 /*echo $baserimg;*/
 
@@ -266,7 +259,7 @@ $catzilla = get_the_category();
 
 if (file_exists($filename)) {
    /* echo "The file $filename exists";*/
-       echo do_shortcode("[wpfilebase tag=list path='$company/$party/$filesfolder/' tpl=main_dls pagenav=1 sort=file_size /]");
+       echo do_shortcode("[wpfilebase tag=list path='$company/$partPostCurrently/$filesfolder/' tpl=main_dls pagenav=1 sort=file_size /]");
     echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#catefish' type='inline' hyperlink='Subassembly files']"); echo '</div>';
     echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#dogfish' type='inline' hyperlink='3D Part View']"); echo '</div>';
 }
@@ -280,8 +273,8 @@ if (isset($_POST["post_title"])) {
    $partnumber = "" ;
 }
 
-if (isset($_POST["textdata"])) {
- $texty =  $_POST["textdata"];
+if (isset($_POST["post_category_name"])) {
+ $texty =  $_POST["post_category_name"];
 } else {
   $texty = "";
 }
@@ -298,17 +291,19 @@ $homefry = esc_url( home_url( '/' ) );
 
 if (isset($_POST['submit1'])) {
 file_put_contents($combodir, $texty);
+echo '<div id="infopane">';
 echo "Created ". $combodir . "<br />" ;
 echo " Created Post: <a href='". $homefry . $partnumber . "' target='_blank'>" . $partnumber . "</a><br />";
 
 
 echo "Press Refresh Database button on left to update changes";
+echo '</div>';
 }
  	/*print_r(get_the_content());*/
  }
 
  else {
-    echo "No drawings uploaded to $party folder on filebase yet!";
+    echo "No drawings uploaded to $partPostCurrently folder on filebase yet!";
     echo $catzilla[0] ->name;
 }
 
@@ -462,9 +457,9 @@ else {
 				?>
 		 <div style="display: none;">
 <div id="catefish" style="padding: 15px; background: #fff;">
-<h5>Assembly Part Files</h5><?php echo do_shortcode("[wpfilebase tag=browser path='$company/$party/$filesfolder/$subpartsfolder' /]");?>
+<h5>Assembly Part Files</h5><?php echo do_shortcode("[wpfilebase tag=browser path='$company/$partPostCurrently/$filesfolder/$subpartsfolder' /]");?>
 <br /></div>
-<div id="dogfish" style="padding: 15px; background: #fff;"> <center><div style="margin:0px auto;"><?php echo do_shortcode("[kento_3dmv width='1000' height='600' source='../download/KINETROL/$party/Images/$party-$filesfolder.obj' /]");?> </div>
+<div id="dogfish" style="padding: 15px; background: #fff;"> <center><div style="margin:0px auto;"><?php echo do_shortcode("[kento_3dmv width='1000' height='600' source='../download/KINETROL/$partPostCurrently/Images/$partPostCurrently-$filesfolder.obj' /]");?> </div>
 </div>
 </div>
 
