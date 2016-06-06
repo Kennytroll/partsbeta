@@ -72,7 +72,7 @@
 
 
 		$CurrentPostAssmTextFile = $sitehome.$CustAssmLoc.$partPostCurrently.".txt";  //find custasm file
-		echo $CurrentPostAssmTextFile. "<br />";
+		/*echo $CurrentPostAssmTextFile. "<br />";*/
  		$CustAssmData= file_get_contents($CurrentPostAssmTextFile);  // assign contents of file, if any, to variable
 		/*echo $CustAssmData;*/
 
@@ -97,8 +97,8 @@
 		if (strlen($revsauce)== 2){$filesfolder=$revsauce; }  // assign rev text content to revsauce variable, if n/a use 1A
 			 else {$filesfolder="1A";}
 		//echo $filesfolder;
-			 echo $revsauce;
-			 echo $revTextLoc;
+			/* echo $revsauce;
+			 echo $revTextLoc;*/
 		$subpartsfolder = $filesfolder." Assembly";
 
 
