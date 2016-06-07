@@ -67,8 +67,8 @@
 		$sitehome = site_url();
 	/*	$sitehome2 = site_url();
 		echo $sitehome2;*/
-		if ($sitehome === "http://localhost/wordpress2") {$sitehome = "http://localhost/";};
-		if ($sitehome === "http://kusa-bu/wordpress") {$sitehome = "http://drawings/";};
+		if ($sitehome === "http://localhost/wordpress2") {$sitehome = "http://localhost/"; $target_dir_filebase = 'C:\\xampp\htdocs\wordpress2\wp-content\uploads\\filebase\\';};
+		if ($sitehome === "http://kusa-bu/wordpress") {$sitehome = "http://drawings/"; $target_dir_filebase = "D:\\Prorgam Files\\xampp\htdocs\wordpress\wp-content\uploads\\filebase\\";};
 
 
 		$CurrentPostAssmTextFile = $sitehome.$CustAssmLoc.$partPostCurrently.".txt";  //find custasm file
@@ -101,169 +101,62 @@
 			 echo $revTextLoc;*/
 		$subpartsfolder = $filesfolder." Assembly";
 
-
-//create name handler variable / if rev doc exists use conac that value to end of name / then just use var-pic1.jpg in each slot to show
- $namehand = get_the_title();
-   // add rev number if has one from -rev.txt 
- if (strlen($revsauce)== 2){$namehand .= "-$revsauce"; } 
-	/*echo $namehand;*/
-
-
-// determine upload directory 
-	$titty = get_the_title();
-
-if (esc_url( home_url( '/' ) )=="http://localhost/") {
-	$target_dir_img = 'C:\\xampp\htdocs\wordpress2\wp-content\uploads\\filebase\\';
-} elseif (esc_url( home_url( '/' ) )=="http://drawings/")  {
-	/*echo "kusa server";*/
-	$target_dir_img = "D:\\Prorgam Files\\xampp\htdocs\wordpress\wp-content\uploads\\filebase\\$company\\$titty\Images\\";
-}else {
-	echo "dir handler broken";
-	
-}
-/*echo $target_dir_img;*/
-
-
-
-function imgUrlGrab ($numb, $comp, $namey) {
-	global $company;
-	global $filesfolder;
-	global $target_dir_img;
-		$revvish = "1A";
-
-if (esc_url( home_url( '/' ) )=="http://localhost/") {
-	$target_dir_imgf = 'C:\\xampp\htdocs\wordpress2\wp-content\uploads\\filebase\\';
-} elseif (esc_url( home_url( '/' ) )=="http://drawings/")  {
-	/*echo "kusa server";*/
-	$target_dir_imgf = "D:\\Prorgam Files\\xampp\htdocs\wordpress\wp-content\uploads\\filebase\\{$comp}\\{$namey}\Images\\";
-}else {
-	echo "dir handler broken";
-	
-}
-
-	// if file exists with rev letter ish , return that, else return below 
-$defaulty = esc_url( home_url( '/' ) ) . "download/{$comp}/" . get_the_title() . "/Images/" . $namey . "-pic{$numb}.JPG";
-
-if (file_exists(esc_url( home_url( '/' ) ) . "download/{$comp}/" . get_the_title() . "/Images/" . $namey . "-pic{$numb}.JPG")) {
-	return $defaulty;
-}else if  (file_exists(esc_url( home_url( '/' ) ) . "download/{$comp}/" . get_the_title() . "/Images/" . $namey . "-{$revvish}" . "-pic{$numb}.JPG")) {
-	$defaulty = esc_url( home_url( '/' ) ) . "download/{$comp}/" . get_the_title() . "/Images/" . $namey . "-{$revvish}" . "-pic{$numb}.JPG";
-	return $defaulty;
-}else {
-	$defaulty = esc_url( home_url( '/' ) ) . "download/{$comp}/" . get_the_title() . "/Images/" . $namey . "-pic{$numb}.JPG";
-	
-};
-
-if (file_exists($target_dir_imgf . $namey . "-pic{$numb}.jpg")) {
-	$defaulty = esc_url( home_url( '/' ) ) . "download/{$comp}/" . get_the_title() . "/Images/" . $namey . "-pic{$numb}.JPG";
-	return $defaulty;
-}
-elseif (file_exists($target_dir_imgf . $namey . "-1A-pic{$numb}.jpg")) {
-		$defaulty = esc_url( home_url( '/' ) ) . "download/{$comp}/" . get_the_title() . "/Images/" . $namey . "-1A" . "-pic{$numb}.JPG";
-	return $defaulty;
-}
- else {
- 		$defaulty = esc_url( home_url( '/' ) ) . "download/{$comp}/" . get_the_title() . "/Images/" . $namey . "-pic{$numb}.JPG";
-	return $defaulty;
-	
-};
-
-  // file exists checker not working, fix return placeholder image pointing to new dir if not found 
- //esc_url( home_url( '/' ) ) . "download/{$comp}/z-ref/-pic{$numb}.JPG"
-};
-
-/*echo imgUrlGrab(1,$company,get_the_title()) . '<br />';
-echo $company . '<br />';*/
-
-
-/*$imgfolder = esc_url( home_url( '/' ) ) . "download/$company/" . get_the_title() . "/Images/";
-
-$oneimage = esc_url( home_url( '/' ) ) . "download/$company/" . get_the_title() . "/Images/" . "$namehand-pic1.JPG";
-
-$oneimagefallback = esc_url( home_url( '/' ) ) . "download/$company/" . get_the_title() . "/Images/" . get_the_title() . "-pic1.JPG";
-$oneimage2 = $target_dir_img . "$namehand-pic1.JPG";*/
-
-// oneimage link works, add if checker to if exists use it, if not use original img link without rev 
-
-/*if ( file_exists($oneimage2) ) {
-	$onepic = $oneimage;
-}
-else if ( !file_exists($oneimage) && file_exists($oneimagefallback) ) {
-   		$onepic = $oneimagefallback;
-}
-else if ( !file_exists($oneimage) && !file_exists($oneimagefallback) ) {
-            // make a base dir somewhere with 1 2 3 placeholder images
-	echo "yarn";
-}
-*/
-
-// make handler vars for imgs 2 and 3 using above logic 
-
+	// image loader function
+		function imageTest ($partnumber2, $company2, $revster, $imgnum, $filebaseloc, $sitehome2 ) {
+			if (file_exists($filebaseloc . "{$company2}\\$partnumber2\Images\\$partnumber2-$revster-pic$imgnum.jpg")) {
+				return "$sitehome2/download/$company2/$partnumber2/Images/$partnumber2-$revster-pic$imgnum.jpg";
+			} elseif (file_exists($filebaseloc . "{$company2}\\$partnumber2\Images\\$partnumber2-pic$imgnum.jpg")) {
+				return "$sitehome2/download/$company2/$partnumber2/Images/$partnumber2-pic$imgnum.jpg";
+			} else {  // return default blank placeholder images if no match using rev or no rev
+					return "$sitehome2/download/Kinetrol/Images/placeholder-pic$imgnum.jpg";
+			}		}
  ?>
+	 	<?php 
+
+   
 
 
-
-		<?php 
-
-/*	$namecheck = $sitehome.$littlezerg.$company2.$slash.$partPostCurrently.$slash."1A";
-	echo "<br />" . $namecheck . "<br />";
-    echo $revsauce; */
-/*
- $testyyy =  esc_url( home_url( '/' ) . 'download/' . $company.'/'. get_the_title() . '/' . "1A" ;*/
-
-/* echo $testyyy;*/
-
-    $namecheck2 =  "C:\\xampp\htdocs\wordpress2\wp-content\uploads\\filebase\KINETROL\\077-100" ;
-   /* echo $namecheck2;*/
-
-   //add in if logic that changes path c:\\ whatever if on local testy vs kusa path
-
-
-
-$baser1= wp_upload_dir();
-$bassss = $baser1['basedir'] . "/Filebase/";
-
-
-/*   	echo $baser . "<br />";*/
-   	$baser2 = $bassss . "/" . $company . "/" . $partPostCurrently . "/" . "1A" ;
-
-   	/*echo $baser2;*/
-    $baserimg = $bassss . "/" . $company . "/" . $partPostCurrently . "/" . "Images/" . $partPostCurrently . "-pic1.jpg";
-  
-/*echo $baserimg;*/
-
-if (!file_exists($baserimg)) {
-	echo '<script type="text/javascript">';
-    echo "var listy = document.getElementById('imagesbar');";
-    echo 'var fishy = "No images to display";';
-	echo 'listy.innerHTML = fishy;';
-	echo 'listy.style.display = "none"';
-	echo '</script>';
-	
-}
-
-$filename = $baser2;
-$catzilla = get_the_category();
-
-
-/*echo $baser2;*/
-
-?>
+//start of images container inside of post html ?>
 		<center style="padding-bottom:11px;"><div class="imagethree" id="imagesbar">
-<a class="wp-colorbox-image cboxElement" href="<?php echo imgUrlGrab(1, $company, $namehand);?>"><img src="<?php echo imgUrlGrab(1, $company, $namehand);?>" width="30%" height="76" class="alignnone"></a> <a class="wp-colorbox-image cboxElement" href="<?php echo imgUrlGrab(2, $company, $namehand);?>"><img src="<?php echo imgUrlGrab(2, $company, $namehand, $namehand);?>" width="30%" height="76" class="alignnone"></a> <a class="wp-colorbox-image cboxElement" href="<?php echo imgUrlGrab(3, $company, $namehand);?>"><img src="<?php echo imgUrlGrab(3, $company, $namehand);?>" width="30%" height="76" class="alignnone"></a></div></center>
+	<a class="wp-colorbox-image cboxElement" href="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 1, $target_dir_filebase, $sitehome);?>">
+		<img src="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 1, $target_dir_filebase, $sitehome);?>" width="30%" height="76" class="alignnone"></a> 
+	<a class="wp-colorbox-image cboxElement" href="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 2, $target_dir_filebase, $sitehome);?>">
+		<img src="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 2, $target_dir_filebase, $sitehome);?>" width="30%" height="76" class="alignnone"></a> 
+	<a class="wp-colorbox-image cboxElement" href="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 3, $target_dir_filebase, $sitehome);?>">
+		<img src="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 3, $target_dir_filebase, $sitehome);;?>" width="30%" height="76" class="alignnone"></a></div></center>
 		<br /><center> 	 
 <?php
-/* echo imgUrlGrab(1, $company, $namehand) . "<br />";
- echo $onepic . "<br />";
- echo $company;*/
 
-if (file_exists($filename)) {
-   /* echo "The file $filename exists";*/
-       echo do_shortcode("[wpfilebase tag=list path='$company/$partPostCurrently/$filesfolder/' tpl=main_dls pagenav=1 sort=file_size /]");
-    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#catefish' type='inline' hyperlink='Subassembly files']"); echo '</div>';
-    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#dogfish' type='inline' hyperlink='3D Part View']"); echo '</div>';
-}
- elseif ($catzilla[0] ->name == "Utility") {
+	 // checker for if a filebase ready folder for chosen part number, only display filebase table if so 
+	$baser1= wp_upload_dir();
+	$bassss = $baser1['basedir'] . "/Filebase/";
+	$namecheck2 =  "C:\\xampp\htdocs\wordpress2\wp-content\uploads\\filebase\KINETROL\\077-100" ;
+		  	   	
+	    $baserimg = $bassss . "/" . $company . "/" . $partPostCurrently . "/" . "Images/" . $partPostCurrently . "-pic1.jpg";
+	  	/*echo $baserimg;*/
+
+	  	// to remove images bar if finding no images match, fix logic finder
+
+	/*if (!file_exists($baserimg)) {  
+		echo '<script type="text/javascript">';
+	    echo "var listy = document.getElementById('imagesbar');";
+	    echo 'var fishy = "No images to display";';
+		echo 'listy.innerHTML = fishy;';
+		echo 'listy.style.display = "none"';
+		echo '</script>';
+		
+	}*/
+	$baser2 = $bassss . "/" . $company . "/" . $partPostCurrently . "/" . "1A" ;
+	$filename = $baser2;
+	$catzilla = get_the_category();
+
+	if (file_exists($filename)) { // filebase load if matches 
+		   /* echo "The file $filename exists";*/
+		       echo do_shortcode("[wpfilebase tag=list path='$company/$partPostCurrently/$filesfolder/' tpl=main_dls pagenav=1 sort=file_size /]");
+		    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#catefish' type='inline' hyperlink='Subassembly files']"); echo '</div>';
+		    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#dogfish' type='inline' hyperlink='3D Part View']"); echo '</div>';
+		}
+ 	elseif ($catzilla[0] ->name == "Utility") {
  	//handlers and post formish var creator for create post and text file, category of post = utility
  	echo do_shortcode("[capture-form-to-post]");
 	
