@@ -102,117 +102,210 @@
 		$subpartsfolder = $filesfolder." Assembly";
 
 	// image loader function
-		function imageTest ($partnumber2, $company2, $revster, $imgnum, $filebaseloc, $sitehome2 ) {
-			if (file_exists($filebaseloc . "{$company2}\\$partnumber2\Images\\$partnumber2-$revster-pic$imgnum.jpg")) {
-				return "$sitehome2/download/$company2/$partnumber2/Images/$partnumber2-$revster-pic$imgnum.jpg";
-			} elseif (file_exists($filebaseloc . "{$company2}\\$partnumber2\Images\\$partnumber2-pic$imgnum.jpg")) {
-				return "$sitehome2/download/$company2/$partnumber2/Images/$partnumber2-pic$imgnum.jpg";
+		function imageTest ($partTextFileName, $company2, $revster, $imgnum, $filebaseloc, $sitehome2 ) {
+			if (file_exists($filebaseloc . "{$company2}\\$partTextFileName\Images\\$partTextFileName-$revster-pic$imgnum.jpg")) {
+				return "$sitehome2/download/$company2/$partTextFileName/Images/$partTextFileName-$revster-pic$imgnum.jpg";
+			} elseif (file_exists($filebaseloc . "{$company2}\\$partTextFileName\Images\\$partTextFileName-pic$imgnum.jpg")) {
+				return "$sitehome2/download/$company2/$partTextFileName/Images/$partTextFileName-pic$imgnum.jpg";
 			} else {  // return default blank placeholder images if no match using rev or no rev
 					return "$sitehome2/download/Kinetrol/Images/placeholder-pic$imgnum.jpg";
 			}		}
- ?>
-	 	<?php 
 
-   
+	//start of images container inside of post content html ?>
+			<center style="padding-bottom:11px;"><div class="imagethree" id="imagesbar">
+		<a class="wp-colorbox-image cboxElement" href="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 1, $target_dir_filebase, $sitehome);?>">
+			<img src="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 1, $target_dir_filebase, $sitehome);?>" width="30%" height="76" class="alignnone"></a> 
+		<a class="wp-colorbox-image cboxElement" href="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 2, $target_dir_filebase, $sitehome);?>">
+			<img src="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 2, $target_dir_filebase, $sitehome);?>" width="30%" height="76" class="alignnone"></a> 
+		<a class="wp-colorbox-image cboxElement" href="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 3, $target_dir_filebase, $sitehome);?>">
+			<img src="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 3, $target_dir_filebase, $sitehome);;?>" width="30%" height="76" class="alignnone"></a></div></center>
+			<br /><center> 	 
+	<?php
 
+	 // checker for if a filebase ready folder for chosen part number, to only display filebase table if stuff to show 
+		$baser1= wp_upload_dir();
+		$filebaseDir = $baser1['basedir'] . "/Filebase/";
+		/*$namecheck2 =  "C:\\xampp\htdocs\wordpress2\wp-content\uploads\\filebase\KINETROL\\077-100" ;*/
+		$baser2 = $filebaseDir . "/" . $company . "/" . $partPostCurrently . "/" . $filesfolder ; // use custom rev ish from rev text? $filesfolder var has rev
+		$filename = $baser2;
+		$catzilla = get_the_category();
 
-//start of images container inside of post html ?>
-		<center style="padding-bottom:11px;"><div class="imagethree" id="imagesbar">
-	<a class="wp-colorbox-image cboxElement" href="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 1, $target_dir_filebase, $sitehome);?>">
-		<img src="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 1, $target_dir_filebase, $sitehome);?>" width="30%" height="76" class="alignnone"></a> 
-	<a class="wp-colorbox-image cboxElement" href="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 2, $target_dir_filebase, $sitehome);?>">
-		<img src="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 2, $target_dir_filebase, $sitehome);?>" width="30%" height="76" class="alignnone"></a> 
-	<a class="wp-colorbox-image cboxElement" href="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 3, $target_dir_filebase, $sitehome);?>">
-		<img src="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 3, $target_dir_filebase, $sitehome);;?>" width="30%" height="76" class="alignnone"></a></div></center>
-		<br /><center> 	 
-<?php
+	  // to remove images bar if finding no images match, fix logic finder, discontinued jquery to footer maybe
+	  		 $baserimg = $filebaseDir . "/" . $company . "/" . $partPostCurrently . "/" . "Images/" . $partPostCurrently . "-pic1.jpg";
+	  		/*echo $baserimg;*/
+			/*if (!file_exists($baserimg)) {  
+			echo '<script type="text/javascript">';
+		    echo "var listy = document.getElementById('imagesbar');";
+		    echo 'var fishy = "No images to display";';
+			echo 'listy.innerHTML = fishy;';
+			echo 'listy.style.display = "none"';
+			echo '</script>';
+				}*/
 
-	 // checker for if a filebase ready folder for chosen part number, only display filebase table if so 
-	$baser1= wp_upload_dir();
-	$bassss = $baser1['basedir'] . "/Filebase/";
-	$namecheck2 =  "C:\\xampp\htdocs\wordpress2\wp-content\uploads\\filebase\KINETROL\\077-100" ;
-		  	   	
-	    $baserimg = $bassss . "/" . $company . "/" . $partPostCurrently . "/" . "Images/" . $partPostCurrently . "-pic1.jpg";
-	  	/*echo $baserimg;*/
-
-	  	// to remove images bar if finding no images match, fix logic finder
-
-	/*if (!file_exists($baserimg)) {  
-		echo '<script type="text/javascript">';
-	    echo "var listy = document.getElementById('imagesbar');";
-	    echo 'var fishy = "No images to display";';
-		echo 'listy.innerHTML = fishy;';
-		echo 'listy.style.display = "none"';
-		echo '</script>';
 		
-	}*/
-	$baser2 = $bassss . "/" . $company . "/" . $partPostCurrently . "/" . "1A" ;
-	$filename = $baser2;
-	$catzilla = get_the_category();
 
-	if (file_exists($filename)) { // filebase load if matches 
+	if (file_exists($filename)) { // filebase load for part number of post if matches 
 		   /* echo "The file $filename exists";*/
 		       echo do_shortcode("[wpfilebase tag=list path='$company/$partPostCurrently/$filesfolder/' tpl=main_dls pagenav=1 sort=file_size /]");
 		    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#catefish' type='inline' hyperlink='Subassembly files']"); echo '</div>';
 		    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#dogfish' type='inline' hyperlink='3D Part View']"); echo '</div>';
 		}
- 	elseif ($catzilla[0] ->name == "Utility") {
- 	//handlers and post formish var creator for create post and text file, category of post = utility
- 	echo do_shortcode("[capture-form-to-post]");
-	
-if (isset($_POST["post_title"])) {
-    $partnumber = $_POST["post_title"];    
-}else{  
-   $partnumber = "" ;
-}
 
-if (isset($_POST["post_category_name"])) {
- $texty =  $_POST["post_category_name"];
-} else {
-  $texty = "";
-}
-  
+		//handlers for post creation and other addnews, only loading if viewing post category utility
+ 		elseif ($catzilla[0] ->name == "Utility") {
+ 			echo do_shortcode("[capture-form-to-post]");  // old post creator plugin, maybe replaced by custom which allows multiple
+			
+			if (isset($_POST["post_title"])) {   //if submitted a part number from form 1 for new post
+		    $partnumber = $_POST["post_title"];    
+			}else{  
+		    $partnumber = "" ; }
+
+			if (isset($_POST["post_category_name"])) {  // if submitted company name on form 1 to use as text file content in customerassm
+			 $texty =  $_POST["post_category_name"];
+			} else {
+			  $texty = "";
+			}
+		  
+			$partTextFileName = $partnumber . ".txt";  //set output customer assm name and filetype
+
+			$uploaddir = wp_upload_dir();
+			$customerAssmDir = $uploaddir['basedir'] . "/Filebase/CustomerAssemblies/"; //set dir location for cust assm
+
+			$customerAssmFullNamePath =  $customerAssmDir . $partTextFileName;  // set name and path for customer assm file to create
+			$homefry = esc_url( home_url( '/' ) ); 
+
+			if (isset($_POST['submit1'])) {  // create cust assm, display status message 
+			file_put_contents($customerAssmFullNamePath, $texty);
+			echo '<div id="infopane">';
+			echo "Created ". $customerAssmFullNamePath . "<br />" ;
+			echo " Created Post: <a href='". $homefry . $partnumber . "' target='_blank'>" . $partnumber . "</a><br />";
+			echo "Press Refresh Database button on left to update changes";
+			echo '</div>';
+			}
+
+		//file upload form post handler 
+		//grab post data from form 
+			$company2 = isset($_POST['compname']) ? $_POST['compname'] : "";
+			$partname = isset($_POST['post_title']) ? $_POST['post_title'] : "";
+			$revForNewUploads = isset($_POST['revvy']) ? $_POST['revvy'] : "";
+
+			print_r($_POST['uploads']);
 
 
-$partnumber2 = $partnumber . ".txt";
 
-$uploaddir = wp_upload_dir();
-$uploaddir2 = $uploaddir['basedir'] . "/Filebase/CustomerAssemblies/";
+		// make rev letter folder name and company name uppercase for pretty pictures
+			$revForNewUploads = strtoupper($revForNewUploads);
+			$company2 = strtoupper($company2);
 
-$combodir =  $uploaddir2 . $partnumber2;
-$homefry = esc_url( home_url( '/' ) ); 
+		// determine upload directory 
+				if (esc_url( home_url( '/' ) )=="http://localhost/") {
+					$target_dir = 'C:\\xampp\htdocs\wordpress2\wp-content\uploads\\filebase\\';
+				} elseif (esc_url( home_url( '/' ) )=="http://drawings/")  {
+					/*echo "kusa server";*/
+					$target_dir = 'D:\\Prorgam Files\xampp\htdocs\wordpress\wp-content\uploads\\filebase\\';
+				}else {
+					echo "dir handler broken"; }
 
-if (isset($_POST['submit1'])) {
-file_put_contents($combodir, $texty);
-echo '<div id="infopane">';
-echo "Created ". $combodir . "<br />" ;
-echo " Created Post: <a href='". $homefry . $partnumber . "' target='_blank'>" . $partnumber . "</a><br />";
+		//set upload dir
+			$dirnado = $target_dir . $company2 . '\\'. $partname . '\\' . "$revForNewUploads\\"; // dir to put new uploaded drawings
+			$RevDoc = $target_dir . $company2 . '\\'. $partname . '\\' . $partname . "-rev.txt"; // what to name rev text
+			$RevLoc = $target_dir . $company2 . '\\'. $partname . '\\' ;  // where to put rev text 
+			/*echo 'dirnado= ' . $dirnado . '<br />';*/
+
+		//check if upload folder exists, create if not 
+			$needdir = 0;
+			if (is_dir($dirnado)) {
+			   /* echo "yes dir exists";*/  //skips elseif step if is dir already
+			} elseif (isset($_FILES["uploads"]["name"])) { /*echo 'no dir'; */ $needdir = 1; }
+
+			if ($needdir === 1) {
+			 mkdir($dirnado, 0777, true);  // make confirmation box in javascript to ask if want to create maybe
+			}
+
+		//initial settings for file upload logic 
+			$uploadOk = 1;
+
+		//loop to set each of the uploaded box to values for processing/checking
+			foreach ($_FILES["uploads"]["error"] as $key => $error) {
+			    if ($error == UPLOAD_ERR_OK) {
+			     $tmpy_name = $_FILES["uploads"]["tmp_name"][$key];  //dir location of orig tmp file
+			        $nameyy = $_FILES["uploads"]["name"][$key];  // root file name of upload
+			    $upFileError = $_FILES["uploads"]["error"][$key];
+			   /*  echo 'tmp-name: ' . $tmpy_name . '<br />';
+			     echo 'namey: ' . $nameyy . '<br />';
+			*/
+				
+		//determine file extension of upload 
+			$file_extension2 = explode('.', $nameyy);  // split string into array split by . for ext
+			$file_extension2 = end($file_extension2);  // end gets last array always 
+			$file_extension2 = strtolower($file_extension2);  // convert to lower case 
+			/*echo $file_extension2;*/
+
+		//set allowed file types
+			$permitted = array('dwg','pdf','slddrw','sldprt','step','jpg');
+
+		//check if uploaded file type is allowed
+			if(in_array($file_extension2, $permitted)) {
+			        if($upFileError === 0) {
+			        	// rename based on form inputs 
+			            $upFileNewName =  $partname . '-' . $revForNewUploads . "." . $file_extension2; 
+			            $yesPLS = 1;
+         		 /*  echo "yes! " . $upFileNewName . '<br />';*/
+            		 } //close rename if statement
+           		  else {
+               		 $uploadOk = 0;}
+			}; //close permitted file type check
 
 
-echo "Press Refresh Database button on left to update changes";
-echo '</div>';
-}
- 	/*print_r(get_the_content());*/
- }
 
- else {
-    echo "No drawings uploaded to $partPostCurrently folder on filebase yet!";
-    echo $catzilla[0] ->name;
-}
+
+		// Check file size (50mb max)
+			if ($_FILES["uploads"]["size"][$key] > 50000000) {
+			    echo "Sorry, file " . $_FILES["uploads"]["name"][$key] . "is too large.";
+			    $uploadOk = 0;
+				}
+
+
+		// Check if $uploadOk is set to 0 by an error
+			if ($uploadOk == 0) {
+			    echo "Sorry, your file was not uploaded.";
+		// if everything is ok, try to upload file
+			} else {
+		    if (move_uploaded_file($tmpy_name, $dirnado . $upFileNewName)) {
+		        echo "<div style='font-size:12px;margin-top:-40px;padding:10px;line-height:15px;'>The file ". $dirnado . $upFileNewName . " has been uploaded." . "</div><br />";
+		        } else {
+		        echo "Sorry, there was an error uploading your file.";}
+			   }// close if upload_err_ok upload thread
+		}; };  // close foreach looper for file upload
+
+		// if upload form checkbox for make post active is checked, save a -rev.txt file
+		if (isset($_POST['makeactive'])) {
+		file_put_contents($RevDoc, $revForNewUploads);   
+		echo "<div style='font-size:12px;margin-top:-30px;padding:10px;line-height:15px;'>Active rev set: {$revForNewUploads}. Refresh Database to see changes.</div> <br />";
+		}
+
+		//active rev changer form
+			if (isset($_POST['submit3'])) {
+       		  if (file_exists ($RevLoc)) {  // check if folder exists before writing
+		       	$newRevPls = $_POST['newRevPls'];
+				file_put_contents($RevDoc, $newRevPls ); 
+				echo "<div style='font-size:12px;margin-top:-30px;padding:10px;line-height:15px;'>Active rev set for {$partname}: {$newRevPls}</div> <br />";
+		        }
+		       else {
+		       	echo "<div style='font-size:12px;margin-top:-65px;padding:27px;line-height:15px;'>Folder not found at {$RevLoc}, please re-enter part information and try again.</div>";
+		       }
+			}
+
+
+		}  // close utility post handler 
+
+ else { // if no match to file exists logic above for current post 
+    echo "No drawings uploaded to $partPostCurrently/$filesfolder folder on filebase yet!"; }
 
 // $texty  =  company name from form
 // $partnumber  = drawing number from form
 
-// post file upload handler start 
-//file upload form post handler 
-
-//grab post data from form 
-$company2 = isset($_POST['compname']) ? $_POST['compname'] : "";
-$partname = isset($_POST['post_title']) ? $_POST['post_title'] : "";
-$revvy = isset($_POST['revvy']) ? $_POST['revvy'] : "";
 /*$fileish = isset($_FILES['fileToUpload']) ? $_FILES['fileToUpload'] : "";*/
-
-print_r($_POST['uploads']);
 
 // file details processing
 /*$upFileName = $fileish['name'];
@@ -220,144 +313,17 @@ $upFileTmpLoc = $fileish['tmp_name'];
 $upFileSize = $fileish['size'];
 $upFileError = $fileish['error'];*/
 
-//set allowed file types
-$permitted = array('dwg','pdf','slddrw','sldprt','step','jpg');
-
-// determine upload directory 
-
-if (esc_url( home_url( '/' ) )=="http://localhost/") {
-	$target_dir = 'C:\\xampp\htdocs\wordpress2\wp-content\uploads\\filebase\\';
-} elseif (esc_url( home_url( '/' ) )=="http://drawings/")  {
-	/*echo "kusa server";*/
-	$target_dir = 'D:\\Prorgam Files\xampp\htdocs\wordpress\wp-content\uploads\\filebase\\';
-}else {
-	echo "dir handler broken";
-
-	
-}
-// make rev letter folder name and company name uppercase for pretty pictures
-$revvy = strtoupper($revvy);
-$company2 = strtoupper($company2);
-//set upload dir
-$dirnado = $target_dir . $company2 . '\\'. $partname . '\\' . "$revvy/";
-$dirnadoRevDoc = $target_dir . $company2 . '\\'. $partname . '\\' . $partname . "-rev.txt";
-$dirnadoRevLoc = $target_dir . $company2 . '\\'. $partname . '\\' ;
-/*echo 'dirnado= ' . $dirnado . '<br />';
-*/
-//check if upload folder exists, create if not 
-$needdir = 0;
-if (is_dir($dirnado)) {
-   /* echo "yes dir exists";*/
-}
-elseif (isset($_FILES["uploads"]["name"])) { /*echo 'no dir'; */ $needdir = 1; }
-
-if ($needdir === 1) {
- mkdir($dirnado, 0777, true);  // make confirmation box in javascript to ask if want to create maybe
-}
+	?>
+	<div style="display: none;"> <?php // subassembly part list and 3dviewer lightbox divs, hidden until click button ?>
+		<div id="catefish" style="padding: 15px; background: #fff;"> 
+		<h5>Assembly Part Files</h5><?php echo do_shortcode("[wpfilebase tag=browser path='$company/$partPostCurrently/$filesfolder/$subpartsfolder' /]");?>
+		<br /></div>
+		<div id="dogfish" style="padding: 15px; background: #fff;"> <center><div style="margin:0px auto;"><?php echo do_shortcode("[kento_3dmv width='1000' height='600' source='../download/KINETROL/$partPostCurrently/Images/$partPostCurrently-$filesfolder.obj' /]");?> </div>
+		</div>
+		</div>
 
 
-
-
-$uploadOk = 1;
-
-//loop to set each of the uploaded box to values for processing/checking
-foreach ($_FILES["uploads"]["error"] as $key => $error) {
-    if ($error == UPLOAD_ERR_OK) {
-     $tmpy_name = $_FILES["uploads"]["tmp_name"][$key];  //dir location of orig tmp file
-        $nameyy = $_FILES["uploads"]["name"][$key];  // root file name of upload
-    $upFileError = $_FILES["uploads"]["error"][$key];
-   /*  echo 'tmp-name: ' . $tmpy_name . '<br />';
-     echo 'namey: ' . $nameyy . '<br />';
-*/
-//determine file extension of upload 
-
-$file_extension2 = explode('.', $nameyy);  // split string into array split by . for ext
-$file_extension2 = end($file_extension2);  // end gets last array always 
-$file_extension2 = strtolower($file_extension2);  // convert to lower case 
-
-/*echo $file_extension2;*/
-
-//check if uploaded file is allowed
-if(in_array($file_extension2, $permitted)) {
-        if($upFileError === 0) {
-            $upFileNewName =  $partname . '-' . $revvy . "." . $file_extension2; // rename based on form inputs 
-            $yesPLS = 1;
-          /*  echo "yes! " . $upFileNewName . '<br />';*/
-             } //close rename if statement
-             else {
-                $uploadOk = 0;
-             }
-}; //close permitted file type check
-
-// Check file size (50mb max)
-if ($_FILES["uploads"]["size"][$key] > 50000000) {
-    echo "Sorry, file " . $_FILES["uploads"]["name"][$key] . "is too large.";
-    $uploadOk = 0;
-}
-
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file
-} else {
-    if (move_uploaded_file($tmpy_name, $dirnado . $upFileNewName)) {
-        echo "<div style='font-size:12px;margin-top:-40px;padding:10px;line-height:15px;'>The file ". $dirnado . $upFileNewName . " has been uploaded." . "</div><br />";
-        } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
-}
-
-
-    };// close if upload_err_ok upload thread
-};  // close foreach looper
- 
-if (isset($_POST['makeactive'])) {
-file_put_contents($dirnadoRevDoc, $revvy);   
-echo "<div style='font-size:12px;margin-top:-30px;padding:10px;line-height:15px;'>Active rev set: {$revvy}. Refresh Database to see changes.</div> <br />";
-}
-
-if (isset($_POST['submit3'])) {
-
-        if (file_exists ($dirnadoRevLoc)) {  // check if folder exists before writing
-
-        	$newRevPls = $_POST['newRevPls'];
-	file_put_contents($dirnadoRevDoc, $newRevPls ); 
-	echo "<div style='font-size:12px;margin-top:-30px;padding:10px;line-height:15px;'>Active rev set: {$newRevPls}. Refresh Database to see changes.</div> <br />";
-
-        }
-
-       else {
-       	echo "<div style='font-size:12px;margin-top:-65px;padding:27px;line-height:15px;'>Folder not found at {$dirnadoRevLoc}, please re-enter part information and try again.</div>";
-       }
-
-	
-}
-
-
-// rev changer handler 
-
-// needs if dir exists check for par numb entered
-// if dir exists / write rev doc / else print error 
-
-/*if (isset($_POST['submit3'])) {
-	echo "submit3";
-}
-else {
-	echo "nopeyy";
-}*/
-
-
-				?>
-		 <div style="display: none;">
-<div id="catefish" style="padding: 15px; background: #fff;">
-<h5>Assembly Part Files</h5><?php echo do_shortcode("[wpfilebase tag=browser path='$company/$partPostCurrently/$filesfolder/$subpartsfolder' /]");?>
-<br /></div>
-<div id="dogfish" style="padding: 15px; background: #fff;"> <center><div style="margin:0px auto;"><?php echo do_shortcode("[kento_3dmv width='1000' height='600' source='../download/KINETROL/$partPostCurrently/Images/$partPostCurrently-$filesfolder.obj' /]");?> </div>
-</div>
-</div>
-
-
-<br /><br />
+	<br /><br />
 
 		<?php
 			/* translators: %s: Name of current post */
