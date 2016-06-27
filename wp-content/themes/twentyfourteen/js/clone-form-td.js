@@ -27,11 +27,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-/*alert('clonerup');*/
+/*alert('colnerup');*/
 jQuery(function () {
     jQuery('#btnAdd').click(function () {
-        var num     = jQuery('.clonedInput').length, // Checks to see how many "duplicatable" input fields we currently have
+        var num     = jQuery('.clonedInput').length, // added this -1 -grog,  Checks to see how many "duplicatable" input fields we currently have
             newNum  = new Number(num + 1),      // The numeric ID of the new input field being added, increasing by 1 each time
+            newNum0 = newNum - 1;
             newElem = jQuery('#entry' + num).clone().attr('id', 'entry' + newNum).fadeIn('slow'); // create the new element via clone(), and manipulate it's ID using newNum value
     
     /*  This is where we manipulate the name/id values of the input inside the new, cloned element
@@ -41,27 +42,49 @@ jQuery(function () {
         Keep in mind that the .val() method is what clears the element when it gets cloned. Radio and checkboxes need .val([]) instead of .val('').
     */
         // H2 - section
-        newElem.find('.heading-reference').attr('id', 'ID' + newNum + '_reference').attr('name', 'ID' + newNum + '_reference').html('Entry #' + newNum);
+        newElem.find('.heading-reference').attr('id', 'ID' + newNum + '_reference').attr('name', 'ID' + newNum0 + '_reference').html('Entry #' + newNum);
 
-        // Title - select
-        newElem.find('.label_ttl').attr('for', 'ID' + newNum + '_title');
-        newElem.find('.select_ttl').attr('id', 'ID' + newNum + '_title').attr('name', 'ID' + newNum + '_title').val('');
+  
+        // Post Title
+        newElem.find('.label_fn').attr('for', 'post_title' + newNum );
+        newElem.find('.input_fn').attr('id', 'post_title' + newNum ).attr('name', 'titles[' + newNum0 + ']').val('');
 
-        // First name - text
-        newElem.find('.label_fn').attr('for', 'ID' + newNum + '_first_name');
-        newElem.find('.input_fn').attr('id', 'ID' + newNum + '_first_name').attr('name', 'ID' + newNum + '_first_name').val('');
+
+
 
         // Last name - text
-        newElem.find('.label_ln').attr('for', 'ID' + newNum + '_last_name');
-        newElem.find('.input_ln').attr('id', 'ID' + newNum + '_last_name').attr('name', 'ID' + newNum + '_last_name').val('');
+        newElem.find('.label_ln').attr('for', 'post_category_name' + newNum );
+        newElem.find('.input_ln').attr('id', 'post_category_name' + newNum ).attr('name', 'categories[' + newNum0 + ']').val('');
 
-        // Flavor - checkbox
+         // Post Content
+        newElem.find('.label_textarea').attr('for', 'post_content' + newNum );
+        newElem.find('.input_text').attr('id', 'notes' + newNum ).attr('name', 'content[' + newNum0 + ']').val('');
+
+            // Flavor - checkbox
         // Note that each input_checkboxitem has a unique identifier "-0". This helps pair up duplicated checkboxes and labels correctly. A bit verbose, at the moment.
         newElem.find('.label_checkboxitem').attr('for', 'ID' + newNum + '_checkboxitem');
-        newElem.find('.input_checkboxitem-0').attr('id', 'ID' + newNum + '_checkboxitem-0').attr('name', 'ID' + newNum + '_checkboxitem').val([]);
-        newElem.find('.input_checkboxitem-1').attr('id', 'ID' + newNum + '_checkboxitem-1').attr('name', 'ID' + newNum + '_checkboxitem').val([]);
-        newElem.find('.input_checkboxitem-2').attr('id', 'ID' + newNum + '_checkboxitem-2').attr('name', 'ID' + newNum + '_checkboxitem').val([]);
-        newElem.find('.input_checkboxitem-3').attr('id', 'ID' + newNum + '_checkboxitem-3').attr('name', 'ID' + newNum + '_checkboxitem').val([]);
+        newElem.find('.input_checkboxitem-0').attr('id', 'ID' + newNum + '_checkboxitem-0').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-1').attr('id', 'ID' + newNum + '_checkboxitem-1').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-2').attr('id', 'ID' + newNum + '_checkboxitem-2').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-3').attr('id', 'ID' + newNum + '_checkboxitem-3').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-4').attr('id', 'ID' + newNum + '_checkboxitem-4').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-5').attr('id', 'ID' + newNum + '_checkboxitem-5').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-6').attr('id', 'ID' + newNum + '_checkboxitem-6').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-7').attr('id', 'ID' + newNum + '_checkboxitem-7').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-8').attr('id', 'ID' + newNum + '_checkboxitem-8').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-9').attr('id', 'ID' + newNum + '_checkboxitem-9').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-10').attr('id', 'ID' + newNum + '_checkboxitem-10').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-11').attr('id', 'ID' + newNum + '_checkboxitem-11').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-12').attr('id', 'ID' + newNum + '_checkboxitem-12').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-13').attr('id', 'ID' + newNum + '_checkboxitem-13').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-14').attr('id', 'ID' + newNum + '_checkboxitem-14').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-15').attr('id', 'ID' + newNum + '_checkboxitem-15').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-16').attr('id', 'ID' + newNum + '_checkboxitem-16').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-17').attr('id', 'ID' + newNum + '_checkboxitem-17').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-18').attr('id', 'ID' + newNum + '_checkboxitem-18').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-19').attr('id', 'ID' + newNum + '_checkboxitem-19').attr('name', 'categories[' + newNum0 + '][]').val([]);
+        newElem.find('.input_checkboxitem-20').attr('id', 'ID' + newNum + '_checkboxitem-20').attr('name', 'categories[' + newNum0 + '][]').val([]);
+
 
         // Flavor - checkbox labels
         // Note that each checkboxitem has a unique identifier "-0". This helps pair up duplicated checkboxes and labels correctly. A bit verbose, at the moment.
@@ -69,18 +92,25 @@ jQuery(function () {
         newElem.find('.checkboxitem-1').attr('for', 'ID' + newNum + '_checkboxitem-1');
         newElem.find('.checkboxitem-2').attr('for', 'ID' + newNum + '_checkboxitem-2');
         newElem.find('.checkboxitem-3').attr('for', 'ID' + newNum + '_checkboxitem-3');
+        newElem.find('.checkboxitem-4').attr('for', 'ID' + newNum + '_checkboxitem-4');
+        newElem.find('.checkboxitem-5').attr('for', 'ID' + newNum + '_checkboxitem-5');
+        newElem.find('.checkboxitem-6').attr('for', 'ID' + newNum + '_checkboxitem-6');
+        newElem.find('.checkboxitem-7').attr('for', 'ID' + newNum + '_checkboxitem-7');
+        newElem.find('.checkboxitem-8').attr('for', 'ID' + newNum + '_checkboxitem-8');
+        newElem.find('.checkboxitem-9').attr('for', 'ID' + newNum + '_checkboxitem-9');
+        newElem.find('.checkboxitem-10').attr('for', 'ID' + newNum + '_checkboxitem-10');
+        newElem.find('.checkboxitem-11').attr('for', 'ID' + newNum + '_checkboxitem-11');
+        newElem.find('.checkboxitem-12').attr('for', 'ID' + newNum + '_checkboxitem-12');
+        newElem.find('.checkboxitem-13').attr('for', 'ID' + newNum + '_checkboxitem-13');
+        newElem.find('.checkboxitem-14').attr('for', 'ID' + newNum + '_checkboxitem-14');
+        newElem.find('.checkboxitem-15').attr('for', 'ID' + newNum + '_checkboxitem-15');
+        newElem.find('.checkboxitem-16').attr('for', 'ID' + newNum + '_checkboxitem-16');
+        newElem.find('.checkboxitem-17').attr('for', 'ID' + newNum + '_checkboxitem-17');
+        newElem.find('.checkboxitem-18').attr('for', 'ID' + newNum + '_checkboxitem-18');
+        newElem.find('.checkboxitem-19').attr('for', 'ID' + newNum + '_checkboxitem-19');
+        newElem.find('.checkboxitem-20').attr('for', 'ID' + newNum + '_checkboxitem-20');
 
-        // Skate - radio
-        newElem.find('.label_radio').attr('for', 'ID' + newNum + '_radioitem');
-        newElem.find('.input_radio').attr('id', 'ID' + newNum + '_radioitem').attr('name', 'ID' + newNum + '_radioitem').val([]);
 
-        // Email - text
-        newElem.find('.label_email').attr('for', 'ID' + newNum + '_email_address');
-        newElem.find('.input_email').attr('id', 'ID' + newNum + '_email_address').attr('name', 'ID' + newNum + '_email_address').val('');
-
-        // Twitter handle (for Bootstrap demo) - append and text
-        newElem.find('.label_twt').attr('for', 'ID' + newNum + '_twitter_handle');
-        newElem.find('.input_twt').attr('id', 'ID' + newNum + '_twitter_handle').attr('name', 'ID' + newNum + '_twitter_handle').val('');
 
     // Insert the new element after the last "duplicatable" input field
         jQuery('#entry' + num).after(newElem);
