@@ -153,35 +153,111 @@
 
 		//handlers for post creation and other addnews, only loading if viewing post category utility
  		elseif ($catzilla[0] ->name == "Utility") {
- 			echo do_shortcode("[capture-form-to-post]");  // old post creator plugin, maybe replaced by custom which allows multiple
-			
-			if (isset($_POST["post_title"])) {   //if submitted a part number from form 1 for new post
-		    $partnumber = $_POST["post_title"];    
-			}else{  
-		    $partnumber = "" ; }
+ 			/*echo do_shortcode("[capture-form-to-post]");*/  // old post creator plugin, maybe replaced by custom which allows multiple
+ 		
+ 		//handlers for form 1 - new post creation 
+ 		if (isset($_POST['submit_button'])) { //only load code if form submitted
 
-			if (isset($_POST["post_category_name"])) {  // if submitted company name on form 1 to use as text file content in customerassm
-			 $texty =  $_POST["post_category_name"];
-			} else {
-			  $texty = "";
-			}
+ 			/*echo "post submitted";*/
+ 		   $titles = isset($_POST['titles']) ? $_POST['titles'] : "";
+     	   $categories = isset($_POST['categories']) ? $_POST['categories'] : "";
+    	   $content = isset($_POST['content']) ? $_POST['content'] : "";
+
+ 	       /*if ($categories === "")  $categories = 'Kinetrol' ;*/
+
+       		
+            /*var_dump($_POST['categories']);*/
+
+
+ 	       //create array for WP posting
+
+	          $posts_array = array();
+
+	          for ($i = 0; $i < count($titles); $i++) {
+	              $posts_array[$i]['title']= $titles[$i];
+
+	             if ($categories[$i] == NULL) {
+	             $posts_array[$i]['category'] = [24];} 
+	             else { $posts_array[$i]['category'] = $categories[$i];} ; 
+
+
+	             // set all categories if something set 
+
+	               /*if ($categories[$i] === "") {$posts_array[$i]['category'] = [24];}  
+	               else { $posts_array[$i]['category'] =  $categories[$i]; };
+
+
+*/						                
+	              
+	              $posts_array[$i]['content'] = $content[$i];
+	          }
+
+	         /* echo "posts_array: " ; print_r($posts_array);*/
+	        /*  echo "cateories array: "; print_r($categories);*/
+
+
+	       //create posts loop and custassm file
+			   for ($i = 0; $i < count($posts_array); $i++) {
+
+				global $user_ID;
+				$new_post = array(
+				'post_title' => $posts_array[$i]['title'],
+				'post_content' =>  $posts_array[$i]['content'],
+				'post_status' => 'publish',
+				'post_date' => date('Y-m-d H:i:s'),
+				'post_author' => $user_ID,
+				'post_type' => 'post',
+				'post_category' => $posts_array[$i]['category']
+				);
+
+				//needs default cat 24, kinetrol. if not for custasm content then for wp cat
+
+				// handlers for customer assembly text file creation, with company name inside text to determine folder dir 
+					//post name set as text file name
+				$partnumber = $new_post['post_title'];	
+				$partTextFileName = $partnumber . ".txt";  //set output customer assm name and filetype
+					//set contents of text file which has cateogory if matched in array
+				$custAssmText = "";
+				if (in_array(24, $new_post['post_category'] )) {
+   				 $custAssmText = 'Kinetrol'; } 
+   				elseif (in_array(27, $new_post['post_category'] )) {
+   				 $custAssmText = 'Kenneth Elliot'; }
+   				
 		  
-			$partTextFileName = $partnumber . ".txt";  //set output customer assm name and filetype
+					//set directory to save text file   				 
+				$uploaddir = wp_upload_dir();
+				$customerAssmDir = $uploaddir['basedir'] . "/Filebase/CustomerAssemblies/"; 
 
-			$uploaddir = wp_upload_dir();
-			$customerAssmDir = $uploaddir['basedir'] . "/Filebase/CustomerAssemblies/"; //set dir location for cust assm
+				$customerAssmFullNamePath =  $customerAssmDir . $partTextFileName;  // set name and path for customer assm file to create
+				$homefry = esc_url( home_url( '/' ) ); // to make a clickable link to go to the created post from infopane
 
-			$customerAssmFullNamePath =  $customerAssmDir . $partTextFileName;  // set name and path for customer assm file to create
-			$homefry = esc_url( home_url( '/' ) ); 
+				// create cust assm, display status message 
+				file_put_contents($customerAssmFullNamePath, $custAssmText);
+				echo '<div id="infopane">';
+				echo "Created ". $customerAssmFullNamePath . "<br />" ;  // append file:///  and ish to href to make text file readable by clicking in browser
+				echo " Created Post: <a href='". $homefry . $partnumber . "' target='_blank'>" . $partnumber . "</a><br />";
+				/*echo "Press Refresh Database button on left to update changes";*/
+				echo '</div>';
 
-			if (isset($_POST['submit1'])) {  // create cust assm, display status message 
-			file_put_contents($customerAssmFullNamePath, $texty);
-			echo '<div id="infopane">';
-			echo "Created ". $customerAssmFullNamePath . "<br />" ;
-			echo " Created Post: <a href='". $homefry . $partnumber . "' target='_blank'>" . $partnumber . "</a><br />";
-			echo "Press Refresh Database button on left to update changes";
-			echo '</div>';
-			}
+
+			
+
+				
+
+				// create post using made array
+					$post_id = wp_insert_post($new_post);  
+
+
+					/*print_r($new_post);*/
+
+				}  // close post creator looper
+
+				/*print_r($categories);*/
+
+ 	   } // close form 1 handler 
+
+
+
 
 		//file upload form post handler 
 		//grab post data from form 
