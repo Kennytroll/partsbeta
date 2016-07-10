@@ -33,6 +33,7 @@
                 	alert("rawr");*/
 
                 /*alert("sup3");*/
+                jQuery('.dataTables_scrollBody th').toggle();
  if(window.location.href.indexOf("addnew") > -1) {
        jQuery('#imagesbar').hide();
     }
@@ -50,6 +51,7 @@
                         jQuery('.recentviewed_post, .widget_recent_entries ul').css("line-height", "10px");
                         /*alert("do work");*/
                         jQuery('.site-content').css("margin-right", "9.05%");
+
 
 
 

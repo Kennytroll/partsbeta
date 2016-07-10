@@ -49,7 +49,7 @@
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 <div id="buttbar" class="buttbar" style="color:#333"><center><ul class="navlinky" id="navlinky">    <!-- list of nav bar links -->
 	<li> <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">Home</a></li><li class="seppy" id="seppy"> </li>
-	<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>parts-list/">Parts List</a> </li> <li class="seppy" id="seppy"> </li>
+	<li><a href="http://kusa-bu/datatable/">Parts List</a> </li> <li class="seppy" id="seppy"> </li>
 		<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>catalog/">Catalog</a> </li> <li class="seppy" id="seppy"> </li>
 	<li><?php echo do_shortcode("[wp_colorbox_media url='#cont' type='inline' hyperlink='Request Drawing']");?> </li> <li class="seppy" id="seppy"> </li>
 	<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>test-post-generator/">Add New</a> </li> <li class="seppy" id="seppy"> </li>
