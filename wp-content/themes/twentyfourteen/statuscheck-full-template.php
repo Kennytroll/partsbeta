@@ -62,13 +62,14 @@ margin-bottom: 8px;
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 
 			
-<div id="buttbar" class="buttbar" style="color:#3F3"><center><ul class="navlinky" id="navlinky">
+<div id="buttbar" class="buttbar" style="color:#3F3"><center><ul class="navlinky" id="navlinky">    <!-- list of nav bar links -->
 	<li> <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">Home</a></li><li class="seppy" id="seppy"> </li>
-	<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>parts-list/">Parts List</a> </li> <li class="seppy" id="seppy"> </li>
+	<li><a href="http://kusa-bu/datatable/">Parts List</a> </li> <li class="seppy" id="seppy"> </li>
 		<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>catalog/">Catalog</a> </li> <li class="seppy" id="seppy"> </li>
-	<li><?php echo do_shortcode("[wp_colorbox_media url='#cont' type='inline' hyperlink='Request Drawing']");?> </li><li class="seppy" id="seppy"> </li>
-	<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>addnew/">Add New Part</a></li>
-	</ul> </center> </div>
+	<li><?php echo do_shortcode("[wp_colorbox_media url='#cont' type='inline' hyperlink='Request Drawing']");?> </li> <li class="seppy" id="seppy"> </li>
+	<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>test-post-generator/">Add New</a> </li> <li class="seppy" id="seppy"> </li>
+	<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>admin/">Admin</a></li>
+</ul> </center> </div>
 			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
 				<button class="menu-toggle"><?php _e( 'Primary Menu', 'twentyfourteen' ); ?></button>
 				<a class="screen-reader-text skip-link" href="#content"><?php _e( 'Skip to content', 'twentyfourteen' ); ?></a>
@@ -803,6 +804,7 @@ foreach ($listarray as $key => $value) {
 
 <script type="text/javascript">
 jQuery(document).ready(function() {
+	/*alert('sup');*/
 
 	/*jQuery('div#posts').hide();*/
 	var postnumbs = jQuery("ul#postlist").children().length;

@@ -66,7 +66,7 @@ margin-bottom: 8px;
 			
 <div id="buttbar" class="buttbar" style="color:#3F3"><center><ul class="navlinky" id="navlinky">
 	<li> <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">Home</a></li><li class="seppy" id="seppy"> </li>
-	<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>parts-list/">Parts List</a> </li> <li class="seppy" id="seppy"> </li>
+	<li><a href="http://kusa-bu/datatable/">Parts List</a> </li> <li class="seppy" id="seppy"> </li>
 		<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>catalog/">Catalog</a> </li> <li class="seppy" id="seppy"> </li>
 	<li><?php echo do_shortcode("[wp_colorbox_media url='#cont' type='inline' hyperlink='Request Drawing']");?> </li><li class="seppy" id="seppy"> </li>
 	<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>addnew/">Add New</a></li><li class="seppy" id="seppy"> </li><li><a href="http://drawings/admin/">Admin</a></li>
@@ -94,7 +94,7 @@ margin-bottom: 8px;
 	<tbody>
 		<tr><td><a href='http://drawings/addnew/'>Add New</a></td><td>Posting tools: Post creator, Drawing uploader, Active Rev Changer tool</td></tr>
 		<tr><td><a href='http://drawings/statuscheck/'>Status Check</a></td><td>Live updating list of active WP posts and drawing files in filebase directory</td></tr>
-		<tr><td><a href='http://k208-jr-web3/datatabletest/examples/advanced/multiItem.html'>Partslist with Editor</a></td><td>Editable Datatables parts list stored in mySQL database on KUSA (temporary URL) </td></tr>
+		<tr><td><a href='http://kusa-bu/datatable/'>Partslist with Editor</a></td><td>Editable Datatables parts list stored in mySQL database on KUSA </td></tr>
 		
 		</table>
 		
