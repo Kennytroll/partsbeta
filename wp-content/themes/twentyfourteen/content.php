@@ -147,9 +147,9 @@
 	if (file_exists($filename)) { // filebase load for part number of post if matches 
 		   /* echo "The file $filename exists";*/
 		       echo do_shortcode("[wpfilebase tag=list path='$company/$partPostCurrently/$filesfolder/' tpl=main_dls pagenav=1 sort=file_size /]");
-		    echo "<center><div class='linkinpark' style='margin-left:100px;'>"; echo do_shortcode("[wp_colorbox_media url='#catefish' type='inline' hyperlink='Subassm files']"); echo '</div>';
-		    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#dogfish' type='inline' hyperlink='3D Part View']"); echo '</div>';
-		    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#fishfish' type='inline' hyperlink='Schematic PDF' class='colorish']"); echo '</div></center>';
+		    echo "<center><div class='linkinpark' style='margin-left:100px;'>"; echo do_shortcode("[wp_colorbox_media url='#SUBASSM' type='image' hyperlink='Subassm files']"); echo '</div>';
+		    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#3DView' type='inline' hyperlink='3D Part View']"); echo '</div>';
+		    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#PDFView' type='inline' hyperlink='Schematic PDF' class='colorish']"); echo '</div></center>';
 		}
 
 		//handlers for post creation and other addnews, only loading if viewing post category utility
@@ -392,15 +392,15 @@ $upFileError = $fileish['error'];*/
 
 	?>
 	<div style="display: none;"> <?php // subassembly part list and 3dviewer lightbox divs, hidden until click button ?>
-		<div id="catefish" style="padding: 15px; background: #fff;"> 
+		<div id="SUBASSM" style="padding: 15px; background: #fff;width:640px;max-width:640px"> 
 		<h5>Assembly Part Files</h5><?php echo do_shortcode("[wpfilebase tag=browser path='$company/$partPostCurrently/$filesfolder/$subpartsfolder' /]");?>
 		<br /></div>
-		<div id="dogfish" style="padding: 15px; background: #fff;"> <center><div style="margin:0px auto;"><?php echo do_shortcode("[kento_3dmv width='1000' height='600' source='../download/KINETROL/$partPostCurrently/Images/$partPostCurrently-$filesfolder.obj' /]");?> </div>
+		<div id="3DView" style="padding: 15px; background: #fff;"> <center><div style="margin:0px auto;"><?php echo do_shortcode("[kento_3dmv width='1000' height='600' source='../download/KINETROL/$partPostCurrently/Images/$partPostCurrently-$filesfolder.obj' /]");?> </div>
 		</div>
-		<div id="fishfish" style="padding: 5px; background: #fff;"><center><div style="margin:0px auto;"><?php echo do_shortcode("[pdfviewer width='100%' height='720px' beta='false']$sitehome/download/$company2/$partPostCurrently/$filesfolder/$partPostCurrently-$filesfolder.PDF[/pdfviewer]");?></div>
+		<div id="PDFView" style="padding: 5px; background: #fff;"><center><div style="margin:0px auto;"><?php echo do_shortcode("[pdfviewer width='100%' height='720px' beta='false']http://kusa-bu/download/$company2/$partPostCurrently/$filesfolder/$partPostCurrently-$filesfolder.PDF[/pdfviewer]");?></div>
 		</div>
-
-
+{$sitehome}
+http://kusa-bu/
 	<br /><br />
 
 		<?php
