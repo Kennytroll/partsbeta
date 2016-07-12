@@ -115,6 +115,31 @@ textarea {
 body {
 	background: #f5f5f5;
 }
+.parttablebase{
+	border-radius:  4px 45px;
+	box-shadow: 1px 0px 5px 1px RGBA(255, 168, 0, 0.41),0px 0px 2px 1px RGBA(179, 74, 74, 0.26),inset 2px 1px 3px 2px rgba(255, 255, 255, 0.3),inset 0px 1px 2px 2px rgba(0,0,0,0.45);
+	background: url(images/abody.png) center repeat-y;
+	padding-right:4px;
+}
+.parttable{
+	padding:7px;
+	box-shadow: 1px 0px 5px 1px RGBA(255, 168, 0, 0.41),0px 0px 2px 1px RGBA(179, 74, 74, 0.26),inset 2px 1px 3px 2px rgba(255, 255, 255, 0.3),inset 0px 1px 4px 1px rgba(0,0,0,0.45);
+	background-color:rgba(255,255,255,0.4);
+}
+.parttable2{
+	padding:17px;
+	box-shadow: 1px 0px 5px 1px RGBA(255, 168, 0, 0.41),0px 0px 2px 1px RGBA(179, 74, 74, 0.26),inset 2px 1px 3px 2px rgba(255, 255, 255, 0.3),inset 0px 1px 2px 2px rgba(0,0,0,0.45);
+	background-color:rgba(255,255,255,0.6);
+}
+
+.labely{
+
+}
+
+.rot90{
+
+}
+
 #wrapper {
     width:600px; 
     margin:0 auto; /*centers the div horizontally in all browsers (except IE)*/
@@ -1061,7 +1086,7 @@ box-shadow: 0px 0px 4px 1px rgba(255,255,255,0.6);*/
 	padding-top: 24px;
 }
 
-.buttbar {
+.buttbar, .buttbar2 {
 	background-color: #333;
 	clear: none;
 	padding: 2px;
@@ -1081,6 +1106,17 @@ box-shadow: 0px 0px 4px 1px rgba(255,255,255,0.6);*/
 	/*
 	url("images/abody.png") repeat-y scroll center center;
 */
+}
+
+.buttbar2 {
+	margin-left: 160px;
+	line-height: 28px;
+	color: #FFF;
+	text-shadow: 0px 1px 1px rgba(0,0,0,0.5);
+	font-weight: 900;
+	font-size: 18px;
+	opacity: 1;
+	box-shadow: inset 1px -4px 4px 10px rgba(186, 115, 43, 0.2) !important;
 }
 
 
@@ -1289,17 +1325,20 @@ a.post-thumbnail:hover {
 	z-index: 1;
 }
 
-.imagethree{
+.imagethree,.imagethree2{
 	border: 2px double #FFF;
-	border-radius: 4px;
+	border-radius: 12px 55px 12px 82px;
 	box-shadow: 1px 1px 2px RGBA(51, 51, 51, 0.31),inset 0px -3px 5px rgba(255,255,255,0.5),inset 0px 0px 30px 40px rgba(255,255,255,0.2);
 	padding: 6px;
 	margin: 12px;
 	background: transparent url("images/abody.png") repeat-y scroll center center;
 }
 
+.imagethree2{
+	border-radius: 12px;
+}
 
-.imagethree img{
+.imagethree2 img{
 	border: 2px solid RGBA(255, 186, 0, 0.43);
 	border-radius: 3px;
 	padding: 1px;
@@ -1355,14 +1394,15 @@ margin-top: 8px;
 
 
 .entry-title {
-	font-size: 30px;
-font-weight: 400;
+font-size: 30px;
+font-weight: 700;
 line-height: 0.5;
 margin: 0px 0px 0px;
-padding-bottom:10px;
-  padding-top: 17px;
+padding-bottom: 10px;
+padding-top: 11px;
 text-transform: uppercase;
-padding-left: 16px;
+padding-left: 18px;
+text-shadow: -1px 1px 1px rgba(0,0,0,0.5);
 }
 
 .entry-title a {
@@ -1517,8 +1557,10 @@ padding-left: 16px;
 .site-content .entry-content,
 .site-content .entry-summary,
 .page-content {
-	background-color: #fff;
+	background-color: rgba(255, 255, 255, 0);
 	padding: 12px 10px 0;
+	/* 
+	background: url(images/abody.png) center repeat-y; */
 }
 
 .page .entry-content {

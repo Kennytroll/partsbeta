@@ -32,6 +32,8 @@
                 /*	jQuery(".header-main").hide();
                 	alert("rawr");*/
 
+                 /* class="dataTable no-footer"*/  //make inline style width  182px 
+
                 /*alert("sup3");*/
                 jQuery('.dataTables_scrollBody th').toggle();
  if(window.location.href.indexOf("addnew") > -1) {
@@ -59,7 +61,7 @@
                            }
 
 
-       
+       jQuery('div.dataTables_scrollBody').css('overflow-x','hidden');
 
 
             });  // close doucment ready funciton 

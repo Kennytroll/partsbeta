@@ -12,7 +12,7 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php twentyfourteen_post_thumbnail(); ?>
-
+	<div class='parttablebase'>
 	<header class="entry-header">
 		<?php if ( in_array( 'category', get_object_taxonomies( get_post_type() ) ) && twentyfourteen_categorized_blog() ) : ?>
 		<div class="entry-meta">
@@ -22,7 +22,7 @@
 			endif;
 
 			if ( is_single() ) :
-				the_title( '<h1 class="entry-title">', '</h1>' );
+				the_title( '<h1 class="entry-title imagethree">', '</h1>' );
 			else :
 				the_title( '<h1 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h1>' );
 			endif;
@@ -112,7 +112,7 @@
 			}		}
 
 	//start of images container inside of post content html ?>
-			<center style="padding-bottom:11px;"><div class="imagethree" id="imagesbar">
+			<center style="padding-bottom:2px;"><div class="imagethree2" id="imagesbar">
 		<a class="wp-colorbox-image cboxElement" href="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 1, $target_dir_filebase, $sitehome);?>">
 			<img src="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 1, $target_dir_filebase, $sitehome);?>" width="30%" height="76" class="alignnone"></a> 
 		<a class="wp-colorbox-image cboxElement" href="<?php echo imageTest($partPostCurrently, $company, $filesfolder, 2, $target_dir_filebase, $sitehome);?>">
@@ -146,10 +146,12 @@
 
 	if (file_exists($filename)) { // filebase load for part number of post if matches 
 		   /* echo "The file $filename exists";*/
+		   echo '<div class="imagethree" style="margin-top:-5px;">';
+		   echo '<div class="labely buttbar2">Drawing Files</div>';
 		       echo do_shortcode("[wpfilebase tag=list path='$company/$partPostCurrently/$filesfolder/' tpl=main_dls pagenav=1 sort=file_size /]");
-		    echo "<center><div class='linkinpark' style='margin-left:100px;'>"; echo do_shortcode("[wp_colorbox_media url='#SUBASSM' type='image' hyperlink='Subassm files']"); echo '</div>';
+		    echo "<center><div class='linkinpark' style='margin-left:100px;'>"; echo do_shortcode("[wp_colorbox_media url='#SUBASSM' type='vimeo' hyperlink='Subassm files']"); echo '</div>';
 		    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#3DView' type='inline' hyperlink='3D Part View']"); echo '</div>';
-		    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#PDFView' type='inline' hyperlink='Schematic PDF' class='colorish']"); echo '</div></center>';
+		    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#PDFView' type='inline' hyperlink='Schematic PDF' class='colorish']"); echo '</div></div></div></center>';
 		}
 
 		//handlers for post creation and other addnews, only loading if viewing post category utility
