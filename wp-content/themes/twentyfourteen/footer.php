@@ -53,7 +53,7 @@
                         jQuery('.recentviewed_post, .widget_recent_entries ul').css("line-height", "10px");
                         /*alert("do work");*/
                         jQuery('.site-content').css("margin-right", "9.05%");
-
+                        jQuery('.linkinpark:eq(0)').css("margin-left", "10px");
 
 
 
@@ -62,6 +62,7 @@
 
 
        jQuery('div.dataTables_scrollBody').css('overflow-x','hidden');
+       jQuery('.linkinpark:eq(0)')
 
 
             });  // close doucment ready funciton 
