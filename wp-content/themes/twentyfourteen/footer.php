@@ -35,10 +35,45 @@
                  /* class="dataTable no-footer"*/  //make inline style width  182px 
 
                 /*alert("sup3");*/
+
+                //remove top blank line in filebase search sidebar ish 
                 jQuery('.dataTables_scrollBody th').toggle();
- if(window.location.href.indexOf("addnew") > -1) {
-       jQuery('#imagesbar').hide();
-    }
+         
+                //get active rev desired to show first, passed from content.php and rev.txt content logic
+                var activerev = "";
+                activerev = jQuery('#activeRevPassing').text();
+                 jQuery('#activeRevPassing').remove();
+                /*alert(activerev);*/
+
+                //hide image bar if on addnew page
+         if(window.location.href.indexOf("addnew") > -1) {
+               jQuery('#imagesbar').hide();
+            }
+
+            //#filebaseholder, hide all revs divs by default, then show only rev text chosen first to start 
+            jQuery('#filebaseholder').children().hide();
+             jQuery("#filebaseholder div#" + activerev).show();
+
+            //rev change dropdown div hide logic
+             jQuery('.revdropdown select[name="revchange"]').change(function () {
+      /*  if (jQuery('#contact select[name="select-question"]').val() == 'question') {
+            jQuery('#comments').show();
+        } else {
+            jQuery('#comments').hide();
+        }*/
+         jQuery('#filebaseholder').children().hide();
+         var chosendropdown = "";
+         chosendropdown =   jQuery('.revdropdown select[name="revchange"]').val();
+           jQuery("#filebaseholder div#" + chosendropdown).show();
+
+           if( jQuery('.revdropdown select[name="revchange"]').val() == 'all'){
+               jQuery('#filebaseholder').children().show();
+           }
+
+           /* alert('changey');*/
+            });
+
+
 
                if (jQuery(window).width() < 950) {
                           	 	 /*alert("smalla");*/
@@ -62,7 +97,7 @@
 
 
        jQuery('div.dataTables_scrollBody').css('overflow-x','hidden');
-       jQuery('.linkinpark:eq(0)')
+      
 
 
             });  // close doucment ready funciton 

@@ -142,13 +142,38 @@
 			echo '</script>';
 				}*/
 
-		
+	// load filebase table(s)	
+
+	// build assoc array with all rev folders found by file_exists, echo div, id with each to hide in jquery  
+		$revs_array = [];
+		if (file_exists($filename)) {$revs_array[0]=$filesfolder; }
+	//array with all rev'ish folders contained in the chosen parts filebase dir 
+		$folders1 = array_diff(scandir($filebaseDir . "/" . $company . "/" . $partPostCurrently . "/", 1), array('..', '.','Thumbs.db','Images',"$partPostCurrently-rev.txt")); 
+
 
 	if (file_exists($filename)) { // filebase load for part number of post if matches 
 		   /* echo "The file $filename exists";*/
 		   echo '<div class="imagethree" style="margin-top:-5px;">';
+		   echo'<div class="revdropdown">Rev <select id="revchange" name="revchange">';
+		   foreach ($folders1 as $rev) {
+			echo "<option value=$rev>$rev</option>";
+			};
+		   echo '<option value=all>All</option>';
+		   echo '</select></div>'; 
+
+		    // pass variable to footer to be hidden by jquery later, to give footer logic help choosing active rev first 
+		   echo "<div id=activeRevPassing>$filesfolder</div>"; 
+
+
 		   echo '<div class="labely buttbar2">Drawing Files</div>';
-		       echo do_shortcode("[wpfilebase tag=list path='$company/$partPostCurrently/$filesfolder/' tpl=main_dls pagenav=1 sort=file_size /]");
+		   /*print_r($folders1);*/
+		      /* echo "<div id =$filesfolder>" .  do_shortcode("[wpfilebase tag=list path='$company/$partPostCurrently/$filesfolder/' tpl=main_dls pagenav=1 sort=file_size /]") . "</div>";
+		       echo do_shortcode("[wpfilebase tag=list path='$company/$partPostCurrently/1A/' tpl=main_dls pagenav=1 sort=file_size /]");*/
+		  echo'<div id="filebaseholder">';
+		foreach ($folders1 as $rev) {
+			echo "<div id =$rev>" .  do_shortcode("[wpfilebase tag=list path='$company/$partPostCurrently/$rev/' tpl=main_dls pagenav=1 sort=file_size /]") . "</div>";
+			};
+		echo'</div>';
 		    echo "<center><div class='linkinpark' style='margin-left:100px;'>"; echo do_shortcode("[wp_colorbox_media url='#SUBASSM' type='vimeo' hyperlink='Subassm files']"); echo '</div>';
 		    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#3DView' type='inline' hyperlink='3D Part View']"); echo '</div>';
 		    echo "<div class='linkinpark'>"; echo do_shortcode("[wp_colorbox_media url='#PDFView' type='inline' hyperlink='Schematic PDF' class='colorish']"); echo '</div></div></div></center>';
@@ -427,6 +452,12 @@ http://kusa-bu/
 ?>
 	</div><!-- .entry-content -->
 	<?php endif; ?>
+	<?php
+
+   session_start();
+   $_SESSION['activerev'] = $filesfolder;
+
+?>
 
 	<?php the_tags( '<footer class="entry-meta"><span class="tag-links">', '', '</span></footer>' ); ?>
 </article><!-- #post-## -->
